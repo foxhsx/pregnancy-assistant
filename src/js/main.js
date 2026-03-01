@@ -102,6 +102,59 @@ function initKeyboardNavigation() {
  */
 function initCurrentPageHighlight() {
     // 获取当前页面文件名
+    let currentPage = window.location.pathname.split('/').pop();
+    
+    // 处理本地文件打开的情况（file:// 协议）
+    if (!currentPage || currentPage === '' || currentPage.includes('file://')) {
+        currentPage = 'index.html';
+    }
+    
+    console.log('当前页面:', currentPage);
+    
+    // 获取导航菜单中的所有链接
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    // 定义页面与导航的映射关系（用于子页面）
+    const pageToNavMap = {
+        'first-trimester': 'first-trimester.html',
+        'second-trimester': 'second-trimester.html', 
+        'third-trimester': 'third-trimester.html',
+        'family-support': 'family-support.html',
+        'cases': 'cases.html',
+        'about': 'about.html'
+    };
+    
+    // 确定应该高亮的导航项
+    let targetNavHref = currentPage;
+    
+    // 检查是否是子页面（如 first-trimester-diet.html）
+    for (const [key, href] of Object.entries(pageToNavMap)) {
+        if (currentPage.startsWith(key) && currentPage !== href) {
+            targetNavHref = href;
+            console.log('匹配到子页面，导航项:', targetNavHref);
+            break;
+        }
+    }
+    
+    console.log('目标导航:', targetNavHref);
+    
+    navLinks.forEach(function(link) {
+        const linkHref = link.getAttribute('href');
+        
+        // 移除可能存在的高亮状态
+        link.removeAttribute('aria-current');
+        
+        // 检查链接是否匹配目标页面
+        if (linkHref === targetNavHref) {
+            link.setAttribute('aria-current', 'page');
+            console.log('高亮:', linkHref);
+        }
+    });
+}
+ * 自动高亮当前页面导航
+ */
+function initCurrentPageHighlight() {
+    // 获取当前页面文件名
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     
     // 获取导航菜单中的所有链接
