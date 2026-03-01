@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="案例库 - 孕期经验分享">
+    <title>案例库 - 孕期教育网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #d69e2e 0%, #b7791f 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .page-header p { font-size: 1.25rem; opacity: 0.9; }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+        
+        .case-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.3s;
+        }
+        
+        .case-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .case-card h3 {
+            color: #b7791f;
+            margin-bottom: 0.5rem;
+        }
+        
+        .case-card .meta {
+            font-size: 0.875rem;
+            color: #718096;
+            margin-bottom: 1rem;
+        }
+        
+        .case-card p {
+            color: #4a5568;
+            margin-bottom: 1rem;
+        }
+        
+        .case-card .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .disclaimer-box {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+        
+        .disclaimer-box h4 {
+            color: #c05621;
+            margin-bottom: 0.5rem;
+        }
+        
+        .disclaimer-box p {
+            color: #4a5568;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+    <header class="site-header">
+        <nav class="main-nav" aria-label="主导航">
+            <div class="nav-container">
+                <a href="index.html" class="site-logo">孕期教育</a>
+                <div class="nav-right">
+                    <button class="mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
+                        <span class="hamburger"></span>
+                    </button>
+                    <ul class="nav-menu" role="list">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="first-trimester.html">孕早期</a></li>
+                        <li><a href="second-trimester.html">孕中期</a></li>
+                        <li><a href="third-trimester.html">孕晚期</a></li>
+                        <li><a href="family-support.html">家庭支持</a></li>
+                        <li><a href="cases.html" aria-current="page">案例库</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="breadcrumb" aria-label="面包屑导航">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">首页</a></li>
+                <li aria-current="page">案例库</li>
+            </ol>
+        </div>
+    </nav>
+
+
+
+
+    <main id="main-content">
+        <header class="page-header">
+            <div class="container">
+                <h1>案例库</h1>
+                <p>真实经验分享，仅供参考</p>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="disclaimer-box">
+                <h4>⚠️ 免责声明</h4>
+                <p>以下案例均为匿名分享，仅供参考。每个孕妇的情况不同，具体问题请咨询专业医生。</p>
+            </div>
+
+            <div class="case-grid">
+                <article class="case-card">
+                    <h3>孕早期叶酸补充经验分享</h3>
+                    <p class="meta">孕期阶段：孕早期 | 来源：匿名分享</p>
+                    <p>分享我的叶酸补充经验，包括如何选择产品、服用时间安排等...</p>
+                    <div class="tags">
+                        <span class="tag">饮食安全</span>
+                        <span class="tag">孕早期</span>
+                        <span class="tag">叶酸</span>
+                    </div>
+                </article>
+            </div>
+
+            <section style="padding: 2rem 0;">
+                <h2>分享您的经验</h2>
+                <p>如果您愿意分享您的孕期经验，欢迎联系我们。</p>
+                <p style="margin-top: 1rem;">所有分享将经过匿名化处理，保护您的隐私。</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="first-trimester.html">孕早期</a></li>
+                        <li><a href="second-trimester.html">孕中期</a></li>
+                        <li><a href="third-trimester.html">孕晚期</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <ul>
+                        <li><a href="about.html">网站介绍</a></li>
+                        <li><a href="about.html">证据政策</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 孕期教育网站. 所有权利保留.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
