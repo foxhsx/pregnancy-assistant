@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initSmoothScroll();
     initKeyboardNavigation();
+    initCurrentPageHighlight();
 });
 
 /**
@@ -92,6 +93,77 @@ function initKeyboardNavigation() {
         if (index === links.length - 1) {
             link.setAttribute('aria-current', 'page');
             link.removeAttribute('href');
+        }
+    });
+}
+
+/**
+ * 自动高亮当前页面导航
+ */
+function initCurrentPageHighlight() {
+    // 获取当前页面文件名
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // 获取导航菜单中的所有链接
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    // 定义页面与导航的映射关系（用于子页面）
+    const pageToNavMap = {
+        'first-trimester': 'first-trimester.html',
+        'second-trimester': 'second-trimester.html', 
+        'third-trimester': 'third-trimester.html',
+        'family-support': 'family-support.html',
+        'cases': 'cases.html',
+        'about': 'about.html'
+    };
+    
+    // 确定应该高亮的导航项
+    let targetNavHref = currentPage;
+    
+    // 如果当前页面是子页面，查找对应的导航项
+    if (!targetNavHref || targetNavHref === '') {
+        targetNavHref = 'index.html';
+    }
+    
+    // 检查是否是子页面（如 first-trimester-diet.html）
+    for (const [key, href] of Object.entries(pageToNavMap)) {
+        if (currentPage.startsWith(key) && currentPage !== href) {
+            targetNavHref = href;
+            break;
+        }
+    }
+    
+    navLinks.forEach(function(link) {
+        const linkHref = link.getAttribute('href');
+        
+        // 移除可能存在的高亮状态
+        link.removeAttribute('aria-current');
+        
+        // 检查链接是否匹配目标页面
+        if (linkHref === targetNavHref) {
+            link.setAttribute('aria-current', 'page');
+        }
+    });
+}
+ * 自动高亮当前页面导航
+ */
+function initCurrentPageHighlight() {
+    // 获取当前页面文件名
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // 获取导航菜单中的所有链接
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(function(link) {
+        const linkHref = link.getAttribute('href');
+        
+        // 移除可能存在的高亮状态
+        link.removeAttribute('aria-current');
+        
+        // 检查链接是否匹配当前页面
+        if (linkHref === currentPage || 
+            (currentPage === '' && linkHref === 'index.html')) {
+            link.setAttribute('aria-current', 'page');
         }
     });
 }
