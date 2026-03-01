@@ -4,16 +4,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化
     initMobileMenu();
     initSmoothScroll();
     initKeyboardNavigation();
     initCurrentPageHighlight();
 });
 
-/**
- * 移动端菜单
- */
 function initMobileMenu() {
     const toggle = document.querySelector('.mobile-menu-toggle');
     const menu = document.querySelector('.nav-menu');
@@ -26,7 +22,6 @@ function initMobileMenu() {
         menu.classList.toggle('active');
     });
 
-    // 点击菜单项后关闭菜单
     menu.querySelectorAll('a').forEach(function(link) {
         link.addEventListener('click', function() {
             toggle.setAttribute('aria-expanded', 'false');
@@ -34,7 +29,6 @@ function initMobileMenu() {
         });
     });
 
-    // 点击外部关闭菜单
     document.addEventListener('click', function(e) {
         if (!toggle.contains(e.target) && !menu.contains(e.target)) {
             toggle.setAttribute('aria-expanded', 'false');
@@ -43,9 +37,6 @@ function initMobileMenu() {
     });
 }
 
-/**
- * 平滑滚动
- */
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
@@ -59,7 +50,6 @@ function initSmoothScroll() {
                     behavior: 'smooth',
                     block: 'start'
                 });
-                // 设置焦点以支持键盘导航
                 target.setAttribute('tabindex', '-1');
                 target.focus();
             }
@@ -67,11 +57,7 @@ function initSmoothScroll() {
     });
 }
 
-/**
- * 键盘导航增强
- */
 function initKeyboardNavigation() {
-    // ESC 关闭移动端菜单
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             const menu = document.querySelector('.nav-menu');
@@ -86,10 +72,8 @@ function initKeyboardNavigation() {
         }
     });
 
-    // 面包屑导航键盘支持
     const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
     breadcrumbLinks.forEach(function(link, index, links) {
-        // 最后一个链接（当前页面）不可点击
         if (index === links.length - 1) {
             link.setAttribute('aria-current', 'page');
             link.removeAttribute('href');
@@ -97,24 +81,16 @@ function initKeyboardNavigation() {
     });
 }
 
-/**
- * 自动高亮当前页面导航
- */
 function initCurrentPageHighlight() {
-    // 获取当前页面文件名
     let currentPage = window.location.pathname.split('/').pop();
     
-    // 处理本地文件打开的情况（file:// 协议）
     if (!currentPage || currentPage === '' || currentPage.includes('file://')) {
         currentPage = 'index.html';
     }
     
-    console.log('当前页面:', currentPage);
-    
-    // 获取导航菜单中的所有链接
     const navLinks = document.querySelectorAll('.nav-menu a');
+    if (navLinks.length === 0) return;
     
-    // 定义页面与导航的映射关系（用于子页面）
     const pageToNavMap = {
         'first-trimester': 'first-trimester.html',
         'second-trimester': 'second-trimester.html', 
@@ -124,61 +100,8 @@ function initCurrentPageHighlight() {
         'about': 'about.html'
     };
     
-    // 确定应该高亮的导航项
     let targetNavHref = currentPage;
     
-    // 检查是否是子页面（如 first-trimester-diet.html）
-    for (const [key, href] of Object.entries(pageToNavMap)) {
-        if (currentPage.startsWith(key) && currentPage !== href) {
-            targetNavHref = href;
-            console.log('匹配到子页面，导航项:', targetNavHref);
-            break;
-        }
-    }
-    
-    console.log('目标导航:', targetNavHref);
-    
-    navLinks.forEach(function(link) {
-        const linkHref = link.getAttribute('href');
-        
-        // 移除可能存在的高亮状态
-        link.removeAttribute('aria-current');
-        
-        // 检查链接是否匹配目标页面
-        if (linkHref === targetNavHref) {
-            link.setAttribute('aria-current', 'page');
-            console.log('高亮:', linkHref);
-        }
-    });
-}
- * 自动高亮当前页面导航
- */
-function initCurrentPageHighlight() {
-    // 获取当前页面文件名
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // 获取导航菜单中的所有链接
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    // 定义页面与导航的映射关系（用于子页面）
-    const pageToNavMap = {
-        'first-trimester': 'first-trimester.html',
-        'second-trimester': 'second-trimester.html', 
-        'third-trimester': 'third-trimester.html',
-        'family-support': 'family-support.html',
-        'cases': 'cases.html',
-        'about': 'about.html'
-    };
-    
-    // 确定应该高亮的导航项
-    let targetNavHref = currentPage;
-    
-    // 如果当前页面是子页面，查找对应的导航项
-    if (!targetNavHref || targetNavHref === '') {
-        targetNavHref = 'index.html';
-    }
-    
-    // 检查是否是子页面（如 first-trimester-diet.html）
     for (const [key, href] of Object.entries(pageToNavMap)) {
         if (currentPage.startsWith(key) && currentPage !== href) {
             targetNavHref = href;
@@ -187,57 +110,24 @@ function initCurrentPageHighlight() {
     }
     
     navLinks.forEach(function(link) {
-        const linkHref = link.getAttribute('href');
-        
-        // 移除可能存在的高亮状态
         link.removeAttribute('aria-current');
         
-        // 检查链接是否匹配目标页面
-        if (linkHref === targetNavHref) {
-            link.setAttribute('aria-current', 'page');
-        }
-    });
-}
- * 自动高亮当前页面导航
- */
-function initCurrentPageHighlight() {
-    // 获取当前页面文件名
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
-    // 获取导航菜单中的所有链接
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    navLinks.forEach(function(link) {
-        const linkHref = link.getAttribute('href');
-        
-        // 移除可能存在的高亮状态
-        link.removeAttribute('aria-current');
-        
-        // 检查链接是否匹配当前页面
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html')) {
+        if (link.getAttribute('href') === targetNavHref) {
             link.setAttribute('aria-current', 'page');
         }
     });
 }
 
-/**
- * 搜索功能（预留）
- */
 function initSearch() {
     const searchInput = document.querySelector('.search-input');
     if (!searchInput) return;
 
     searchInput.addEventListener('input', function() {
-        // TODO: 实现搜索功能
         const query = this.value.toLowerCase();
         console.log('搜索:', query);
     });
 }
 
-/**
- * 主题切换（预留）
- */
 function initThemeToggle() {
     const themeToggle = document.querySelector('.theme-toggle');
     if (!themeToggle) return;
@@ -248,16 +138,12 @@ function initThemeToggle() {
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    // 加载保存的主题
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');
     }
 }
 
-/**
- * 字体大小调整（无障碍）
- */
 function initFontSize() {
     const decreaseBtn = document.querySelector('.font-decrease');
     const increaseBtn = document.querySelector('.font-increase');
@@ -283,9 +169,6 @@ function initFontSize() {
     }
 }
 
-/**
- * 高对比度模式（无障碍）
- */
 function initHighContrast() {
     const contrastBtn = document.querySelector('.contrast-toggle');
     if (!contrastBtn) return;
@@ -296,16 +179,11 @@ function initHighContrast() {
         localStorage.setItem('highContrast', isHighContrast);
     });
 
-    // 加载保存的高对比度设置
     if (localStorage.getItem('highContrast') === 'true') {
         document.body.classList.add('high-contrast');
     }
 }
 
-/**
- * 页面分析（预留）
- */
 function initAnalytics() {
-    // TODO: 添加网站分析代码
     console.log('孕期教育网站 - 分析已初始化');
 }
