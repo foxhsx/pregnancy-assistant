@@ -223,6 +223,54 @@ body {
 /* ===== 面包屑 ===== */
 .breadcrumb {
     background: var(--color-background-alt);
+    padding: var(--spacing-md) 0;
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.breadcrumb li::after {
+    content: '/';
+    color: var(--color-text-light);
+    margin-left: var(--spacing-xs);
+    font-size: 0.875rem;
+}
+
+.breadcrumb li:last-child::after {
+    content: none;
+}
+
+.breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+}
+.breadcrumb {
+    background: var(--color-background-alt);
     padding: var(--spacing-sm) 0;
 }
 
