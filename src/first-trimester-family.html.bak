@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="孕早期家庭支持指南 - 准爸爸角色、夫妻沟通、待产准备">
+    <title>孕早期家庭支持 - 孕期教育网站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #dd6b20 0%, #c05621 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .page-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .page-header .meta { font-size: 1rem; opacity: 0.9; }
+        
+        .content-section { padding: 2rem 0; }
+        
+        .subsection {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .subsection h3 {
+            color: #c05621;
+            margin-bottom: 1rem;
+        }
+        
+        .subsection ul {
+            margin-left: 1.5rem;
+        }
+        
+        .subsection li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .disclaimer-box {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+        
+        .disclaimer-box h3 {
+            color: #c05621;
+            margin-bottom: 0.5rem;
+        }
+        
+        .disclaimer-box p {
+            color: #4a5568;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">跳到主要内容</a>
+
+    <header class="site-header">
+        <nav class="main-nav" aria-label="主导航">
+            <div class="nav-container">
+                <a href="index.html" class="site-logo">孕期教育</a>
+                <div class="nav-right">
+                    <button class="mobile-menu-toggle" aria-label="打开菜单" aria-expanded="false">
+                        <span class="hamburger"></span>
+                    </button>
+                    <ul class="nav-menu" role="list">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="first-trimester.html">孕早期</a></li>
+                        <li><a href="second-trimester.html">孕中期</a></li>
+                        <li><a href="third-trimester.html">孕晚期</a></li>
+                        <li><a href="family-support.html">家庭支持</a></li>
+                        <li><a href="cases.html">案例库</a></li>
+                        <li><a href="about.html">关于我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="breadcrumb" aria-label="面包屑导航">
+        <div class="container">
+            <ol>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="first-trimester.html">孕早期</a></li>
+                <li aria-current="page">家庭支持</li>
+            </ol>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <div class="container">
+            <article class="content-page">
+                <header class="page-header">
+                    <h1>孕早期家庭支持指南</h1>
+                    <p class="meta">妊娠周期：第1-12周 | 适用人群：孕早期孕妇及家庭成员</p>
+                </header>
+
+                <section class="content-section">
+                    <h2>概述</h2>
+                    <p>孕早期家庭支持指南 - 准爸爸角色、夫妻沟通、待产准备</p>
+                </section>
+
+                <section class="content-section">
+                    <h2>核心要点</h2>
+                    
+                    <article class="subsection">
+                        <h3>1. 准爸爸行动指南</h3>
+<p>了解孕期知识：学习孕早期基础知识、参加产前课程。<br/>
+日常照顾：分担家务、准备营养餐、陪伴散步。<br/>
+情感支持：倾听感受、给予鼓励、共同规划未来。</p>
+<p class="authority-link"><a href="https://www.cmcha.org.cn/pregnancy-partner.html">中国妇幼保健协会孕期伴侣指南</a></p>
+<div class="external-image">
+<img src="https://via.placeholder.com/600x400/dd6b20/FFFFFF?text=准爸爸行动清单" alt="准爸爸行动清单">
+</div>
+                    </article>
+
+                    <article class="subsection">
+                        <h3>2. 夫妻沟通技巧</h3>
+<p>有效倾听：不急于给建议，先理解感受。<br/>
+表达方式：用"我"开头表达感受，避免指责。<br/>
+共同决策：重要问题一起商量，尊重彼此意见。</p>
+<p class="authority-link"><a href="https://www.firsthospital.com.cn/family-communication.html">上海第一妇婴保健院家庭心理科</a></p>
+<div class="external-image">
+<img src="https://via.placeholder.com/600x400/dd6b20/FFFFFF?text=夫妻沟通技巧图" alt="夫妻沟通技巧图">
+</div>
+                    </article>
+
+                    <article class="subsection">
+                        <h3>3. 禁忌事项</h3>
+<ul>
+<li>❌ 不可忽视妻子的情绪变化</li>
+<li>❌ 不可在孕期做出重大决策</li>
+</ul>
+                    </article>
+
+                    <article class="subsection">
+<h3>4. 待产准备清单</h3>
+<p>物品准备：孕妇装、婴儿用品、住院必需品。<br/>
+时间规划：孕早期开始准备、孕中期采购、孕晚期打包。<br/>
+财务准备：了解生育保险、预算规划。</p>
+<p class="authority-link"><a href="https://www.cca.org.cn/pregnancy-shopping.html">中国消费者协会孕期消费指南</a></p>
+<div class="external-image">
+<img src="https://via.placeholder.com/600x400/dd6b20/FFFFFF?text=待产准备清单模板" alt="待产准备清单模板">
+</div>
+                    </article>
+
+<article class="subsection">
+<h3>5. 医院选择指南</h3>
+<p>医院类型：三甲医院、专科医院、私立医院。<br/>
+选择标准：医疗水平、交通便利、分分娩方式支持、医保覆盖。<br/>
+实地考察：参观产科、了解病房环境、咨询产科医生。</p>
+<p class="authority-link"><a href="https://www.nhc.gov.cn/hospital-rating.html">国家卫生健康委医院等级评定</a></p>
+<div class="external-image">
+<img src="https://via.placeholder.com/600x400/dd6b20/FFFFFF?text=医院选择评估表" alt="医院选择评估表">
+</div>
+</article>
+                </section>
+
+                <section class="content-section">
+                    <h2>常见问题</h2>
+                    <details>
+                        <summary>Q: 准爸爸在孕早期应该做什么？</summary>
+                        <p>准爸爸应该学习孕期知识、分担家务、提供情感支持，最重要的是倾听和理解妻子的感受。</p>
+                    </details>
+                </section>
+
+                <div class="disclaimer-box">
+                    <h3>免责声明</h3>
+                    <p>本 网站内容仅供参考，不能替代专业医疗建议。如有健康问题，请咨询专业医生。</p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="first-trimester.html">孕早期</a></li>
+                        <li><a href="second-trimester.html">孕中期</a></li>
+                        <li><a href="third-trimester.html">孕晚期</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 孕期教育网站. 所有权利保留.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>

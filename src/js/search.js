@@ -145,9 +145,7 @@
         if (navRight) {
             navRight.appendChild(searchContainer);
         }
-        if (navMenu) {
-            navContainer.insertBefore(searchContainer, navMenu.nextSibling);
-        }
+        // 已经将搜索容器挂载在导航右侧，无需再插入
 
         searchInput = searchContainer.querySelector('.search-input');
         searchResults = searchContainer.querySelector('.search-results');
