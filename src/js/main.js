@@ -72,15 +72,10 @@ function initKeyboardNavigation() {
         }
     });
 
-    const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
-    breadcrumbLinks.forEach(function(link, index, links) {
-        if (index === links.length - 1) {
-            link.setAttribute('aria-current', 'page');
-            link.removeAttribute('href');
-        }
-    });
-}
+    // Note: Current page is already marked in HTML with aria-current="page" on <li>.
+    // No JS manipulation of breadcrumb links is needed.
 
+}
 function initCurrentPageHighlight() {
     let currentPage = window.location.pathname.split('/').pop();
     
