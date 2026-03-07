@@ -8,41 +8,201 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search.css">
     <style>
+        .trimester-entry {
+            background: linear-gradient(180deg, #f4f8f8 0%, #edf3f3 100%);
+            padding: 0 0 3.5rem;
+        }
+
         .stage-header {
-            background: linear-gradient(135deg, #319795 0%, #2c7a7b 100%);
-            color: white;
-            padding: 3rem 0;
+            background: linear-gradient(180deg, rgba(228, 240, 239, 0.96) 0%, rgba(242, 248, 248, 0.98) 58%, rgba(250, 252, 252, 0.98) 100%);
+            color: #1f4549;
+            padding: clamp(2.75rem, 5vw, 4.25rem) 0;
             text-align: center;
+            border-bottom: 1px solid rgba(44, 122, 123, 0.12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
         }
-        .stage-header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .stage-header p { font-size: 1.25rem; opacity: 0.9; }
-        
-        .category-section { padding: 2rem 0; }
-        .category-section:nth-child(odd) { background: #f7fafc; }
-        
+
+        .stage-header__inner {
+            max-width: 52rem;
+            margin: 0 auto;
+        }
+
+        .stage-kicker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.9rem;
+            margin-bottom: 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(44, 122, 123, 0.14);
+            background: rgba(255, 255, 255, 0.7);
+            color: rgba(43, 86, 92, 0.82);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(44, 122, 123, 0.06);
+        }
+
+        .stage-header h1 {
+            font-size: clamp(2.25rem, 5vw, 3.2rem);
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.03em;
+            color: #1f4549;
+        }
+
+        .stage-header p {
+            max-width: 40rem;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.85;
+            color: rgba(43, 86, 92, 0.84);
+        }
+
+        .trimester-entry__content {
+            padding-top: clamp(1.5rem, 3vw, 2.25rem);
+        }
+
+        .category-section {
+            padding: clamp(1.1rem, 2vw, 1.5rem);
+            margin-bottom: 1.25rem;
+            background: linear-gradient(180deg, rgba(242, 247, 247, 0.94) 0%, rgba(237, 244, 244, 0.98) 100%);
+            border: 1px solid rgba(44, 122, 123, 0.09);
+            border-radius: 20px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+        }
+
+        .category-section--cross {
+            margin-top: 0.5rem;
+        }
+
         .category-title {
-            font-size: 1.5rem;
-            color: #2c7a7b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            font-size: 1.35rem;
+            color: #234e52;
             margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.9rem;
+            border-bottom: 1px solid rgba(44, 122, 123, 0.1);
+            letter-spacing: -0.01em;
         }
-        
-        .article-list { list-style: none; }
+
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(44, 122, 123, 0.12) 0%, rgba(44, 122, 123, 0.02) 100%);
+        }
+
+        .article-list {
+            list-style: none;
+            display: grid;
+            gap: 0.9rem;
+        }
+
         .article-list li {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            transition: box-shadow 0.3s;
+            position: relative;
+            padding: 1.15rem 1.2rem;
+            margin-bottom: 0;
+            background: linear-gradient(180deg, #ffffff 0%, #fcfefe 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(44, 122, 123, 0.12);
+            box-shadow: 0 12px 28px rgba(44, 122, 123, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
         }
-        .article-list li:hover { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .article-list h3 { margin-bottom: 0.5rem; }
-        .article-list h3 a { color: #2c7a7b; text-decoration: none; }
-        .article-list h3 a:hover { text-decoration: underline; }
-        .article-list p { color: #4a5568; margin-bottom: 0.5rem; }
-        .article-list .tags { margin-top: 0.5rem; }
+
+        .article-list li::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto auto 1.2rem;
+            width: 2.6rem;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(44, 122, 123, 0.36) 0%, rgba(44, 122, 123, 0.04) 100%);
+        }
+
+        .article-list li:hover,
+        .article-list li:focus-within {
+            transform: translateY(-2px);
+            border-color: rgba(44, 122, 123, 0.2);
+            background: linear-gradient(180deg, #ffffff 0%, #f9fcfc 100%);
+            box-shadow: 0 16px 32px rgba(44, 122, 123, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        }
+
+        .article-list h3 {
+            margin-bottom: 0.6rem;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            letter-spacing: -0.01em;
+        }
+
+        .article-list h3 a {
+            color: #1f4549;
+            text-decoration: none;
+        }
+
+        .article-list h3 a:hover,
+        .article-list h3 a:focus-visible {
+            color: #2c7a7b;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.18em;
+        }
+
+        .article-list p {
+            color: #4a5568;
+            margin-bottom: 0;
+            line-height: 1.75;
+            font-size: 0.975rem;
+            max-width: 34rem;
+        }
+
+        .article-list .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.95rem;
+        }
+
+        .article-list .tag {
+            background: linear-gradient(180deg, #f5f9f9 0%, #eef5f5 100%);
+            color: #2b565c;
+            border: 1px solid rgba(44, 122, 123, 0.12);
+            border-radius: 999px;
+            padding: 0.38rem 0.72rem;
+            margin-right: 0;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+        }
+
+        @media (max-width: 768px) {
+            .trimester-entry {
+                padding-bottom: 2.5rem;
+            }
+
+            .stage-header {
+                padding: 2.5rem 0;
+            }
+
+            .category-section {
+                padding: 1rem;
+                border-radius: 16px;
+            }
+
+            .category-title {
+                font-size: 1.2rem;
+                align-items: flex-start;
+            }
+
+            .article-list li {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -79,15 +239,16 @@
         </div>
     </nav>
 
-    <main id="main-content">
+    <main id="main-content" class="trimester-entry">
         <header class="stage-header">
-            <div class="container">
+            <div class="container stage-header__inner">
+                <p class="stage-kicker">First trimester overview</p>
                 <h1>孕早期</h1>
-                <p>妊娠第1-12周</p>
+                <p>妊娠第1-12周的重点主题总览，帮助你从饮食、安全、心理与家庭支持四个维度快速进入所需内容。</p>
             </div>
         </header>
 
-        <div class="container">
+        <div class="container trimester-entry__content">
             <section class="category-section">
                 <h2 class="category-title">饮食安全</h2>
                 <ul class="article-list">
@@ -142,7 +303,7 @@
             </section>
         </div>
 
-        <section style="background: #f7fafc; padding: 2rem 0; margin-top: 2rem;">
+        <section class="category-section category-section--cross">
             <div class="container">
                 <h2>跨阶段内容</h2>
                 <ul class="article-list">
