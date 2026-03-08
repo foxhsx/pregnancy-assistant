@@ -1,0 +1,8 @@
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /first-trimester-diet.html HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /css/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /css/search.css HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /js/search.js HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /js/main.js HTTP/1.1" 200 -
+127.0.0.1 - - [08/Mar/2026 17:48:57] code 404, message File not found
+127.0.0.1 - - [08/Mar/2026 17:48:57] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [08/Mar/2026 17:49:56] "GET /first-trimester-family.html HTTP/1.1" 200 -

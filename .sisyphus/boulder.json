@@ -1,13 +1,16 @@
 {
-  "active_plan": "/home/cecil/桌面/opencodeWorkSpace/yunqi/.sisyphus/plans/early-pregnancy-content.md",
-  "started_at": "2026-03-01T13:09:52.755Z",
+  "active_plan": "/home/cecil/桌面/opencodeWorkSpace/yunqi/.sisyphus/plans/first-trimester-improvements.md",
+  "started_at": "2026-03-08T07:39:04.560Z",
   "session_ids": [
     "ses_356b7f524ffeVQHynqgs3p6Nkd",
     "ses_353d4e343ffe5evSoa0eSx1VAh",
     "ses_34cb3b091ffeQU2VpwkxzqCA7G",
     "ses_34c3f0712ffeQYhOVjneXz03Sn",
-    "ses_34c372f79ffehzfy35zh3DRoym"
+    "ses_34c372f79ffehzfy35zh3DRoym",
+    "ses_339dd0b3bffeAKd1Zllrr4z9Ri",
+    "ses_333c3e0ebffe1VrIftrlRh0jG0"
   ],
-  "plan_name": "early-pregnancy-content",
-  "agent": "atlas"
+  "plan_name": "first-trimester-improvements",
+  "agent": "atlas",
+  "worktree_path": "/home/cecil/桌面/opencodeWorkSpace/yunqi"
 }

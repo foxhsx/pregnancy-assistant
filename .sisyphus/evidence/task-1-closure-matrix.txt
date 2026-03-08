@@ -1,0 +1,162 @@
+Task 1 Closure Matrix - first-trimester-improvements
+Generated: 2026-03-08
+
+Scope rule
+- This artifact only defines the closure baseline matrix and state-sync rules for `first-trimester-improvements`.
+- It does not implement product-page content, test infrastructure, or product-code changes.
+
+Authoritative state model
+- Old completed baseline: `early-pregnancy-content` = first delivery/remediation baseline already landed.
+- Current closure plan: `first-trimester-improvements` = only the remaining closure work that still needs implementation or proof.
+- Therefore, old baseline-complete UI/layout work must stay closed unless new regression evidence overturns it.
+
+Current authoritative evidence vs superseded evidence
+
+Authoritative now (for this Task 1 baseline sync)
+1. `.sisyphus/plans/first-trimester-improvements.md`
+   - Authority type: closure intent and allowed scope.
+   - Why authoritative: explicitly redefines work as closure against remaining gaps, not full reimplementation.
+2. `.sisyphus/boulder.json`
+   - Authority type: active tracker pointer.
+   - Why authoritative: currently points to `first-trimester-improvements` and correct worktree path.
+3. `.sisyphus/evidence/consistency-report.md`
+   - Authority type: current cross-page structural/content-count baseline.
+   - Why authoritative: explicitly states it does not reuse 2026-03-02 stale conclusions and reflects current `src/` state.
+4. `.sisyphus/evidence/task-1-closure-matrix.txt` (this file)
+   - Authority type: reusable closure-state mapping and admin sync rules for later tasks.
+   - Why authoritative: this is the first file that concretely maps baseline/partial/remaining/deferred for `first-trimester-improvements`.
+
+Conditionally authoritative / limited authority
+5. `.sisyphus/evidence/final-verification-report.md`
+   - Authority type: current verification snapshot for the old remediation baseline only.
+   - Still usable for: current image/link/alt totals, documented tooling constraints, proof that stale 15-link total is obsolete.
+   - Not authoritative for: closure status of `first-trimester-improvements`, because its scope still names `.sisyphus/plans/early-pregnancy-content.md`.
+
+Superseded or stale conclusions (must NOT be reused as current fact)
+1. `.sisyphus/evidence/work-completion-summary.md`
+   - Superseded conclusions:
+     - "15/15 tasks completed"
+     - safety page only has 2 images
+     - total links = 15
+     - placeholder/format deficits remain current
+   - Why superseded: later evidence already shows safety page = 3 images, total authority links = 16, cross-page consistency issues resolved.
+   - What remains useful: historical record of the original `early-pregnancy-content` delivery wave only.
+2. Any 2026-03-02-era negative evidence referenced indirectly by later reports
+   - Superseded conclusions:
+     - missing images
+     - missing authority links
+     - placeholder image URLs still present
+     - disclaimer/link-format inconsistency still open
+   - Why superseded: `consistency-report.md` explicitly states those negative findings are no longer current.
+3. Any interpretation that unchecked boxes in `first-trimester-improvements.md` mean shared layout/header/sticky/card work is undone
+   - Superseded by: plan's "Authoritative State" plus notepad decisions/learnings showing shared `.article-layout`, desktop sticky `.article-nav`, and visual polish are already baseline-complete.
+
+Closure baseline matrix
+
+Baseline Satisfied
+- Shared article-detail UI/layout baseline already complete:
+  - `.article-layout` wrapper pattern
+  - desktop sticky `.article-nav`
+  - header/card/readability polish
+  - Evidence: plan "Authoritative State", decisions.md lines 38-47, learnings.md lines 109-118.
+- `src/first-trimester.html` already has entry-card visual optimization baseline.
+  - Evidence: current file structure and styling; plan lines 39, 47.
+- `src/first-trimester-safety.html`, `src/first-trimester-family.html`, `src/first-trimester-mental.html` already exist as shipped first-round detail pages.
+  - Evidence: current `src/` files; work-completion-summary historical delivery list.
+- One round of QA evidence already exists.
+  - Evidence: plan lines 41-42 and `.sisyphus/evidence/final-qa/` reference in plan.
+- Old missing-image / missing-link / inconsistent-source-format deficits are already closed as baseline issues.
+  - Evidence: `consistency-report.md`, `final-verification-report.md`.
+
+Partially Satisfied
+- Old task cluster: safety content expansion
+  - Current state: page already covers basic产检、风险预警、应急联系, but does not yet satisfy the closure target for detailed China-context timeline + NT + 建档 + symptom-tier escalation + indicator boundaries.
+  - Evidence: current `src/first-trimester-safety.html` body vs plan lines 45, 50, 63, 71.
+- Old task cluster: family support expansion
+  - Current state: family page already covers hospital choice, partner role, preparation, accompaniment baseline, but not yet the required explicit正文 structure for 建档协助 / 陪诊分工 / 就医包 / 紧急联系人.
+  - Evidence: current `src/first-trimester-family.html` body vs plan lines 46, 51, 64, 72.
+- Old task cluster: trimester entry alignment
+  - Current state: entry page already has improved visual cards, but the safety summary is not yet proven to fully cover 检查 / 建档 / 应急.
+  - Evidence: current `src/first-trimester.html` summary text vs plan lines 47, 52, 65, 73.
+
+Remaining
+- Safety page closure work remains open.
+  - Required closure target: China-context checks timeline, NT window/prep, 建档 timing/materials with region variance, symptom escalation grading, activity/indicator guardrails, visit prep, source expression.
+  - Future owner tasks: plan Tasks 3 and 4.
+- Family page closure work remains open.
+  - Required closure target: family assistance for 建档, 陪诊 preparation/division, 就医包, 紧急联系人, abnormal-situation support actions.
+  - Future owner task: plan Task 5.
+- Entry-page summary alignment remains open.
+  - Required closure target: safety card clearly reflects 检查 / 建档 / 应急.
+  - Future owner task: plan Task 5.
+- Root-level static-site automation harness remains open.
+  - Future owner task: plan Task 2.
+- Mainland-priority image/source trace supplementation or explicit keep-rationale remains open.
+  - Future owner task: plan Task 6.
+- Final automated regression, evidence refresh, and end-state sync remain open.
+  - Future owner task: plan Task 7.
+
+Deferred
+- Do not reopen or redesign shared sticky/sidebar/header/card UI unless regression evidence proves breakage.
+- Do not perform unconstrained site-wide image replacement.
+- Do not add new first-trimester pages, SPA architecture, or heavy framework migration.
+- Do not convert "baseline satisfied" work into "remaining" merely because a checkbox is currently unchecked.
+
+Old-task-to-closure mapping (historical `early-pregnancy-content` tasks)
+- Task 1 创建孕妈安全页面骨架 -> Baseline Satisfied
+- Task 2 创建心理健康页面骨架 -> Baseline Satisfied
+- Task 3 创建家庭支持页面骨架 -> Baseline Satisfied
+- Task 4 产检时间表与早孕反应缓解 -> Partially Satisfied
+- Task 5 风险预警信号与运动禁忌 -> Partially Satisfied
+- Task 6 应急联系指南与QA验证 -> Partially Satisfied
+- Task 7 情绪监测量表与焦虑识别 -> Baseline Satisfied
+- Task 8 放松技巧与角色转换 -> Baseline Satisfied
+- Task 9 专业求助与QA验证 -> Baseline Satisfied
+- Task 10 准爸爸行动指南与沟通技巧 -> Baseline Satisfied
+- Task 11 待产准备与医院选择 -> Partially Satisfied
+- Task 12 陪产准备与QA验证 -> Partially Satisfied
+- Task 13 跨模块一致性检查 -> Baseline Satisfied as historical remediation pass; its stale sub-conclusions are superseded where newer evidence says so
+- Task 14 更新首页导航链接 -> Baseline Satisfied
+- Task 15 完整性验证与文档 -> Partially Satisfied as historical closeout only; not sufficient for `first-trimester-improvements` closure because newer plan introduced remaining content, automation, and admin-sync work
+
+State synchronization rules (must be followed by later tasks)
+
+Rule 1 - Authority order during closure
+- For `first-trimester-improvements`, authority order is:
+  1. Actual repository state (`src/`, root test files, evidence artifacts)
+  2. Current active tracker pointer in `.sisyphus/boulder.json`
+  3. Latest closure evidence file written for the relevant scope
+  4. Plan intent in `.sisyphus/plans/first-trimester-improvements.md`
+- If an older report conflicts with newer repository-backed evidence, the older report is superseded and must be named as stale.
+
+Rule 2 - `.sisyphus/boulder.json`
+- Current status: already aligned; no update required in Task 1.
+- Required fields to stay aligned through closure:
+  - `active_plan` must remain the absolute path to `.sisyphus/plans/first-trimester-improvements.md`
+  - `plan_name` must remain `first-trimester-improvements`
+  - `worktree_path` must remain the current repository path
+- Update `boulder.json` only if one of those fields drifts from reality; do not mutate it gratuitously.
+
+Rule 3 - Plan checkbox policy
+- The plan file is read-only in this workflow.
+- Task 1 does NOT modify plan checkboxes.
+- Unchecked boxes in the plan are not themselves evidence of undone baseline work.
+- Final closure must therefore be reported in evidence files and tracker-aligned state, not by editing historical plan checkboxes.
+
+Rule 4 - Final report policy
+- Until Task 7 completes, this file is the authoritative closure-state matrix for `first-trimester-improvements`.
+- When Task 7 finishes, the final closure report must explicitly inherit this matrix, then update each item with fresh evidence references.
+- That final Task 7 report must also state which earlier evidence files remain authoritative for baseline facts and which are superseded for final closure status.
+
+Rule 5 - Baseline protection rule
+- Shared layout/sticky/header polish already counts as closed baseline.
+- Later tasks may verify it, but cannot reclassify it as remaining unless regression evidence is captured.
+
+Rule 6 - Safety note carried forward
+- If any later task edits `src/js/main.js`, syntax must be checked immediately (`node --check`) and LSP diagnostics must be reviewed, because a prior missing-brace regression already occurred.
+- This rule is inherited from notepad issues and is binding for future JS edits, even though Task 1 makes no JS changes.
+
+Task 1 conclusion
+- `first-trimester-improvements` is now concretely framed as a closure plan layered on top of an already-delivered `early-pregnancy-content` baseline.
+- Baseline-complete UI/layout work is protected from accidental reopening.
+- Remaining work is limited to safety/family/entry content closure, root test infrastructure, media/source trace decisions, and final evidence/admin synchronization.

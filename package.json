@@ -1,0 +1,14 @@
+{
+  "name": "yunqi-static-site-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:browsers": "node ./scripts/install-playwright.mjs",
+    "test:e2e": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test",
+    "test:e2e:no-server": "PLAYWRIGHT_BROWSERS_PATH=.playwright-browsers playwright test --config=playwright.no-server.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "http-server": "^14.1.1"
+  }
+}
