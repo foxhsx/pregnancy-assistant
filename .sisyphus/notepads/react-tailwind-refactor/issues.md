@@ -1,0 +1,3 @@
+- `src/css/search.css` contained malformed duplicated declarations that Vite surfaced during CSS minification; cleaned them as part of Task 1 because build verification required a warning-free output.
+- LSP CSS diagnostics required Biome to be installed in the environment before the changed stylesheet could be verified cleanly.
+- `src/js/main.js` legacy helper initializers remain intentionally dormant in Task 1; grouping them into a referenced array avoids ESLint unused-var failures without changing runtime behavior.

@@ -1,0 +1,2 @@
+- Search corpus config still excludes `search.html`, so future search indexing work must decide whether the page remains intentionally non-indexed or gets added by a later contract change.
+- Second- and third-trimester pages still contain `/pages/` content links that are outside the canonical route allowlist; this task preserved them because content migration is deferred.

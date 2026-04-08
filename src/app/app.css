@@ -1,0 +1,1832 @@
+/* ===== 孕期助手 App 样式 ===== */
+
+/* ===== 全局 ===== */
+#app-root {
+  min-height: 100vh;
+  background: #f5f0eb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: #2d3748;
+  -webkit-font-smoothing: antialiased;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+#app-root *,
+#app-root *::before,
+#app-root *::after {
+  box-sizing: border-box;
+}
+
+/* ===== 设置页面 ===== */
+.setup-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f0eb 0%, #ede5dc 100%);
+}
+
+.setup-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 24px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.setup-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.setup-logo {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.setup-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.setup-header p {
+  font-size: 14px;
+  color: #718096;
+}
+
+.setup-mode-toggle {
+  display: flex;
+  gap: 0;
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mode-btn.active {
+  background: white;
+  color: #2c7a7b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  font-weight: 600;
+}
+
+.setup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.setup-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.setup-input {
+  padding: 14px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #2d3748;
+  background: #f7fafc;
+  transition: border-color 0.2s;
+}
+
+.setup-input:focus {
+  outline: none;
+  border-color: #2c7a7b;
+  background: white;
+}
+
+.setup-hint {
+  font-size: 12px;
+  color: #a0aec0;
+  line-height: 1.5;
+}
+
+.setup-submit {
+  margin-top: 8px;
+  padding: 14px;
+  background: linear-gradient(135deg, #2c7a7b, #319795);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.setup-submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(44, 122, 123, 0.3);
+}
+
+.setup-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.setup-back {
+  display: block;
+  margin: 16px auto 0;
+  padding: 8px 16px;
+  background: none;
+  border: none;
+  color: #a0aec0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ===== Dashboard ===== */
+.dashboard {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px 32px;
+}
+
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  background: #f5f0eb;
+  z-index: 100;
+}
+
+.dash-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dash-logo {
+  font-size: 24px;
+}
+
+.dash-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.dash-reset-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.dash-reset-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 孕周大卡片 */
+.dash-week-card {
+  background: linear-gradient(135deg, #2c7a7b, #285e61);
+  color: white;
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(44, 122, 123, 0.25);
+}
+
+.week-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.week-number {
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.week-meta {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.week-due {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* 底部导航已移至体重页面区块 */
+
+.dash-nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  background: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dash-nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.nav-icon {
+  font-size: 22px;
+}
+
+.nav-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+/* 通用 section */
+.dash-section {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 16px;
+}
+
+/* 宝宝发育 */
+.baby-size {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.size-emoji {
+  font-size: 40px;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8f5f5, #d1e7e7);
+  border-radius: 16px;
+}
+
+.size-label {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.size-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c7a7b;
+}
+
+.baby-stats {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat {
+  display: flex;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.stat-label {
+  color: #a0aec0;
+}
+
+.stat-val {
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.baby-milestones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.milestone-tag {
+  background: #e8f5f5;
+  color: #2c7a7b;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 产检 */
+.checkup-empty {
+  text-align: center;
+  color: #a0aec0;
+  padding: 20px;
+  font-size: 14px;
+}
+
+.checkup-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkup-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+}
+
+.checkup-item.important {
+  border-left: 3px solid #e53e3e;
+}
+
+.checkup-item.done {
+  opacity: 0.6;
+  background: #f7fafc;
+}
+
+.checkup-item.current {
+  border-color: #2c7a7b;
+  background: #f0fdfd;
+}
+
+.checkup-check {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.checkup-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.checkup-desc {
+  font-size: 12px;
+  color: #718096;
+  margin-top: 2px;
+}
+
+.checkup-week {
+  font-size: 11px;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
+.upcoming {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.upcoming h3 {
+  font-size: 13px;
+  color: #a0aec0;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.upcoming-item {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.upcoming-week {
+  color: #2c7a7b;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.upcoming-name {
+  color: #4a5568;
+}
+
+/* 饮食 */
+.diet-advice {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+.nutrient-tags, .avoid-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.nutrient-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.nutrient-tag {
+  background: #e8f5f5;
+  color: #2c7a7b;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.avoid-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.avoid-tag {
+  background: #fff5f5;
+  color: #c53030;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.recipe-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  margin: 16px 0 10px;
+}
+
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipe-card {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.recipe-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+.recipe-ingredients {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 4px;
+}
+
+.recipe-steps {
+  font-size: 13px;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+/* 生活指南 */
+.life-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.life-col h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.life-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.life-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.life-item:last-child {
+  border-bottom: none;
+}
+
+.life-cat {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #a0aec0;
+  letter-spacing: 0.5px;
+}
+
+.life-text {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.do-item .life-text {
+  color: #276749;
+}
+
+.dont-item .life-text {
+  color: #c53030;
+}
+
+.dash-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* ===== 详情页通用 ===== */
+.detail-page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px 32px;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  background: #f5f0eb;
+  z-index: 100;
+}
+
+.detail-header h1 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.header-week {
+  margin-left: auto;
+  font-size: 13px;
+  color: #718096;
+  background: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #2c7a7b;
+  font-weight: 600;
+}
+
+.back-btn:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 产检时间线 */
+.checkup-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0eae3;
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+.timeline-item.done {
+  opacity: 0.6;
+}
+
+.timeline-item.current {
+  background: #f0fdfd;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 4px -8px;
+}
+
+.timeline-item.important .timeline-name {
+  color: #c53030;
+}
+
+.timeline-check {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-week {
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.timeline-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.required-badge {
+  font-size: 10px;
+  background: #fff5f5;
+  color: #c53030;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.timeline-desc {
+  font-size: 12px;
+  color: #718096;
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.timeline-now {
+  font-size: 12px;
+  color: #2c7a7b;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.detail-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+/* 饮食详情页 */
+.diet-current {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.diet-current h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.diet-advice-full {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 16px;
+}
+
+.nutrient-section, .avoid-section {
+  margin-bottom: 16px;
+}
+
+.nutrient-section h3, .avoid-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.nutrient-cards, .avoid-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.nutrient-card {
+  background: #e8f5f5;
+  color: #2c7a7b;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.avoid-card {
+  background: #fff5f5;
+  color: #c53030;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.recipe-detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recipe-detail-card {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.recipe-detail-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.recipe-detail-section {
+  font-size: 13px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* 全孕期菜谱 */
+.diet-all {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.diet-all h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.all-recipes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.all-recipe-group {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 16px;
+}
+
+.all-recipe-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.all-recipe-group h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c7a7b;
+  margin-bottom: 8px;
+}
+
+.all-recipe-names {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.all-recipe-item {
+  background: #f7fafc;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+
+.all-recipe-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #2d3748;
+}
+
+.all-recipe-ing {
+  font-size: 11px;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
+/* 生活详情页 */
+.life-detail-section {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.life-detail-section h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.dont-section {
+  background: #fffafa;
+}
+
+.life-category {
+  margin-bottom: 16px;
+}
+
+.life-category:last-child {
+  margin-bottom: 0;
+}
+
+.life-category h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #718096;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.life-detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.life-detail-item {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.do-detail {
+  background: #f0fff4;
+  color: #276749;
+}
+
+.dont-detail {
+  background: #fff5f5;
+  color: #c53030;
+}
+
+/* ===== 响应式 ===== */
+
+/* 很窄的屏幕 (<360px)：生活指南改为单列 */
+@media (max-width: 359px) {
+  .life-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .week-number {
+    font-size: 36px;
+  }
+
+  .dash-week-card {
+    padding: 20px 16px;
+  }
+
+  .baby-size {
+    flex-wrap: wrap;
+  }
+
+  .baby-stats {
+    margin-left: 0;
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+/* 平板 (600-1024px)：稍宽，双列卡片 */
+@media (min-width: 600px) {
+  .dashboard, .detail-page {
+    max-width: 680px;
+  }
+
+  .setup-card {
+    padding: 48px 32px;
+  }
+
+  .dash-nav {
+    gap: 12px;
+  }
+
+  .dash-nav-btn {
+    padding: 16px 12px;
+  }
+
+  .recipe-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .all-recipe-names {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .checkup-timeline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 24px;
+  }
+
+  .timeline-item {
+    border-bottom: 1px solid #f0eae3;
+  }
+}
+
+/* 桌面 (1024px+)：三列网格布局，充分利用空间 */
+@media (min-width: 1024px) {
+  #app-root {
+    background: #ede5dc;
+  }
+
+  .dashboard {
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 24px;
+  }
+
+  .dash-header {
+    grid-column: 1 / -1;
+    position: static;
+    background: transparent;
+    padding: 8px 0;
+  }
+
+  .dash-week-card {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+    border-radius: 24px;
+    padding: 36px 32px;
+  }
+
+  .week-number {
+    font-size: 56px;
+  }
+
+  .dash-nav {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 0;
+    gap: 16px;
+  }
+
+  .dash-nav-btn {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
+  .nav-icon {
+    font-size: 28px;
+  }
+
+  .nav-label {
+    font-size: 14px;
+  }
+
+  .dash-section {
+    margin-bottom: 0;
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .dash-footer {
+    grid-column: 1 / -1;
+  }
+
+  .detail-page {
+    max-width: 960px;
+    padding: 24px;
+  }
+
+  .detail-header {
+    position: static;
+    background: transparent;
+    padding: 8px 0 24px;
+  }
+
+  .diet-current {
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .diet-all {
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .all-recipe-names {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .life-detail-section {
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .life-detail-section .life-category {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 16px;
+  }
+
+  .life-detail-section .life-category h3 {
+    grid-column: 1 / -1;
+  }
+
+  .life-detail-list {
+    columns: 2;
+    column-gap: 8px;
+  }
+
+  .life-detail-item {
+    break-inside: avoid;
+  }
+}
+
+/* ===== 准爸爸页面 ===== */
+.dad-intro {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dad-subtitle {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.dad-category {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dad-category-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f0eae3;
+}
+
+.dad-task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dad-task-item {
+  margin-bottom: 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.dad-task-item.expanded {
+  background: #f7fafc;
+}
+
+.dad-task-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.dad-task-toggle:hover {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.dad-task-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.dad-task-arrow {
+  font-size: 10px;
+  color: #a0aec0;
+  flex-shrink: 0;
+}
+
+.dad-task-detail {
+  padding: 0 12px 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #718096;
+  border-top: 1px solid #edf2f7;
+  margin-top: 0;
+  padding-top: 10px;
+}
+
+/* ===== 产检详情展开 ===== */
+
+/* 产检完成日期 */
+.checkup-done-date,
+.timeline-done-date {
+  font-size: 11px;
+  color: #38a169;
+  margin-top: 4px;
+}
+
+.checkup-progress {
+  text-align: center;
+  font-size: 13px;
+  color: #2c7a7b;
+  font-weight: 600;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 12px;
+}
+
+/* ===== 体重页面 ===== */
+.weight-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.weight-stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.weight-stat-label {
+  font-size: 12px;
+  color: #a0aec0;
+  margin-bottom: 4px;
+}
+
+.weight-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c7a7b;
+}
+
+.weight-add-card,
+.weight-chart-card,
+.weight-history-card,
+.weight-ref-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.weight-add-card h3,
+.weight-chart-card h3,
+.weight-history-card h3,
+.weight-ref-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+}
+
+.weight-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.weight-input-group {
+  flex: 0 0 calc(50% - 6px);
+  max-width: calc(50% - 6px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.weight-input-group label {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.weight-input-group input {
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #2d3748;
+  background: #f7fafc;
+  transition: border-color 0.2s;
+}
+
+.weight-input-group input:focus {
+  outline: none;
+  border-color: #2c7a7b;
+  background: white;
+}
+
+.weight-add-btn {
+  flex: 1 1 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #2c7a7b, #319795);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s;
+}
+
+.weight-add-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.weight-add-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.weight-chart-container {
+  position: relative;
+  height: 240px;
+}
+
+.weight-chart-hint {
+  font-size: 11px;
+  color: #a0aec0;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.weight-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.weight-history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0eae3;
+}
+
+.weight-history-item:last-child {
+  border-bottom: none;
+}
+
+.weight-history-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.weight-history-date {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.weight-history-week {
+  font-size: 11px;
+  color: #a0aec0;
+}
+
+.weight-history-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c7a7b;
+  min-width: 60px;
+  text-align: right;
+}
+
+.weight-delete-btn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.weight-delete-btn:hover {
+  opacity: 1;
+}
+
+.weight-ref-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.weight-ref-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 0;
+  padding: 8px 12px;
+  font-size: 13px;
+  border-bottom: 1px solid #f0eae3;
+}
+
+.weight-ref-row:last-child {
+  border-bottom: none;
+}
+
+.weight-ref-header {
+  background: #f7fafc;
+  font-weight: 600;
+  color: #718096;
+  font-size: 12px;
+}
+
+.weight-ref-row:not(.weight-ref-header) span:first-child {
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.weight-ref-row:not(.weight-ref-header) span:nth-child(2),
+.weight-ref-row:not(.weight-ref-header) span:nth-child(3) {
+  color: #2c7a7b;
+  font-weight: 600;
+}
+
+.weight-ref-hint {
+  font-size: 11px;
+  color: #a0aec0;
+  margin-top: 8px;
+}
+
+/* Dashboard 体重速览 */
+.weight-quick-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
+.weight-quick {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.weight-quick-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weight-quick-label {
+  font-size: 12px;
+  color: #a0aec0;
+}
+
+.weight-quick-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c7a7b;
+}
+
+.weight-quick-value.gain {
+  color: #d69e2e;
+}
+
+.weight-quick-value.loss {
+  color: #e53e3e;
+}
+
+.weight-quick-arrow {
+  margin-left: auto;
+  font-size: 18px;
+  color: #a0aec0;
+}
+
+.weight-empty {
+  color: #a0aec0;
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+/* 体重建议摘要（Dashboard） */
+.weight-quick-advice {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.weight-quick-success {
+  background: #f0fff4;
+  color: #276749;
+}
+
+.weight-quick-warning {
+  background: #fffbeb;
+  color: #975a16;
+}
+
+.weight-quick-info {
+  background: #ebf8ff;
+  color: #2b6cb0;
+}
+
+.weight-quick-advice-detail {
+  font-weight: 400;
+  color: #718096;
+}
+
+/* 体重建议卡片（WeightPage） */
+.weight-advice-card {
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.weight-advice-success {
+  background: linear-gradient(135deg, #f0fff4, #e6ffed);
+  border: 1px solid #c6f6d5;
+}
+
+.weight-advice-warning {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 1px solid #fde68a;
+}
+
+.weight-advice-info {
+  background: linear-gradient(135deg, #ebf8ff, #dbeafe);
+  border: 1px solid #bfdbfe;
+}
+
+.weight-advice-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.weight-advice-icon {
+  font-size: 20px;
+}
+
+.weight-advice-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.weight-advice-success .weight-advice-title { color: #276749; }
+.weight-advice-warning .weight-advice-title { color: #975a16; }
+.weight-advice-info .weight-advice-title { color: #2b6cb0; }
+
+.weight-advice-range {
+  font-size: 13px;
+  color: #4a5568;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.weight-advice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.weight-advice-list li {
+  padding: 4px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+/* 孕前体重卡片 */
+.weight-pre-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.weight-pre-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 8px;
+}
+
+.weight-pre-hint {
+  font-size: 12px;
+  color: #a0aec0;
+  margin-bottom: 10px;
+}
+
+.weight-pre-input-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.weight-pre-input-row input {
+  flex: 1 1 120px;
+  min-width: 100px;
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #f7fafc;
+}
+
+.weight-pre-input-row input:focus {
+  outline: none;
+  border-color: #2c7a7b;
+  background: white;
+}
+
+.weight-pre-unit {
+  font-size: 14px;
+  color: #718096;
+  font-weight: 500;
+}
+
+.weight-pre-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.weight-pre-display strong {
+  color: #2c7a7b;
+  font-size: 16px;
+}
+
+.weight-pre-edit {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #718096;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.weight-pre-edit:hover {
+  border-color: #2c7a7b;
+  color: #2c7a7b;
+}
+
+/* 历史记录增重标签 */
+.weight-history-gain {
+  font-size: 12px;
+  font-weight: 600;
+  color: #d69e2e;
+  min-width: 55px;
+  text-align: right;
+}
+
+/* 6个导航按钮适配 */
+.dash-nav {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 359px) {
+  .dash-nav {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dash-nav {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+
+  .weight-page {
+    max-width: 960px;
+  }
+
+  .weight-overview {
+    gap: 16px;
+  }
+
+  .weight-stat-card {
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .weight-chart-container {
+    height: 300px;
+  }
+}
+.timeline-expand-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  color: inherit;
+}
+
+.timeline-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.timeline-expand-arrow {
+  font-size: 10px;
+  color: #a0aec0;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.timeline-detail {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e2e8f0;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.detail-section {
+  margin-bottom: 12px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2c7a7b;
+  margin-bottom: 6px;
+}
+
+.detail-section p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.tip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tip-item {
+  position: relative;
+  padding: 6px 0 6px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.tip-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #2c7a7b;
+  font-weight: bold;
+}
+
+/* 桌面端准爸爸页面 */
+@media (min-width: 1024px) {
+  .dad-page {
+    max-width: 960px;
+  }
+
+  .dad-category {
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .dad-task-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+  }
+
+  .dad-task-item {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,4 @@
+- Task 1 scaffold keeps Vite root at `src/` and derives Rollup MPA inputs from `src/data/search-config.json`, with `search.html` appended explicitly because tests require it before it enters the search corpus.
+- Preserving literal `.html` requests works cleanly when Playwright serves built `dist/` output via the existing static server instead of introducing SPA history fallback behavior.
+- Existing imperative `src/js/main.js` and `src/js/search.js` can survive the first React step by importing them from a shared React bootstrap module instead of rewriting page behavior immediately.
+- Vite config for this repo should anchor workspace resolution to `process.cwd()` rather than `import.meta.url`, because Vite may execute a bundled temp config from `.vite-temp` during build.

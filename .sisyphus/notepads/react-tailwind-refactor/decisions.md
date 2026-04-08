@@ -1,0 +1,3 @@
+- Chose a minimal React mount contract: every canonical HTML page now owns its own `<div id="react-page-root">` plus `react/bootstrap.jsx`, so each route remains a distinct Vite entry with no React Router takeover.
+- Updated Playwright webServer to build first and serve `dist/`, because Vite's production MPA output is the artifact that must preserve direct `.html` entrypoint compatibility.
+- Added flat ESLint config and kept scope minimal; lint passes without starting broader refactors of legacy static scripts.
