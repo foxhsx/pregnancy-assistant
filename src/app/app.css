@@ -1340,6 +1340,37 @@
 /* ===== 响应式 ===== */
 
 /* 很窄的屏幕 (<360px)：生活指南改为单列 */
+@media (max-width: 480px) {
+  .sp-record-item {
+    padding: 12px 10px;
+  }
+
+  .sp-record-top {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sp-delete-btn {
+    align-self: flex-start;
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .sp-meta-row {
+    gap: 6px;
+  }
+
+  .sp-pill,
+  .sp-trigger-tag {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .sp-trigger-row {
+    gap: 4px;
+  }
+}
+
 @media (max-width: 359px) {
   .life-cols {
     grid-template-columns: 1fr;
