@@ -1,1 +1,0 @@
-- Final verification synchronized with remediated link/image evidence and constraints.

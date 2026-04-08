@@ -1,1 +1,0 @@
-- xmllint unavailable and browser policy constraint prevent full command/manual QA closure.
