@@ -6,6 +6,7 @@ const workspaceRoot = process.cwd();
 const srcRoot = path.resolve(workspaceRoot, 'src');
 
 export default defineConfig({
+  base: '/pregnancy/',
   root: srcRoot,
   plugins: [react()],
   server: {
