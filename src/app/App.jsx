@@ -12,7 +12,7 @@ import { DadPage } from './DadPage.jsx';
  * 应用根组件
  */
 export function App() {
-  const { ready, lmpDate, info, isSetup, setLmpDate, setDueDate, checkupDone, toggleCheckup, weightRecords, addWeight, deleteWeight, preWeight, setPreWeight, resetData } = usePregnancy();
+  const { ready, lmpDate, info, isSetup, setLmpDate, setDueDate, checkupDone, toggleCheckup, weightRecords, addWeight, deleteWeight, preWeight, setPreWeight, resetData, symptoms } = usePregnancy();
   const [page, setPage] = useState('home');
 
   if (!ready) return null;
@@ -58,6 +58,6 @@ export function App() {
     case 'dad':
       return <DadPage info={info} onBack={() => setPage('home')} />;
     default:
-      return <Dashboard info={info} checkupDone={checkupDone} toggleCheckup={toggleCheckup} weightRecords={weightRecords} preWeight={preWeight} onNavigate={handleNavigate} onReset={handleReset} />;
+      return <Dashboard info={info} checkupDone={checkupDone} toggleCheckup={toggleCheckup} weightRecords={weightRecords} preWeight={preWeight} symptoms={symptoms} onNavigate={handleNavigate} onReset={handleReset} />;
   }
 }

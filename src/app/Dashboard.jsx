@@ -8,12 +8,13 @@ import { getWeightAdvice } from './weight-advice.js';
 /**
  * Dashboard 主页面
  */
-export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, preWeight, onNavigate, onReset }) {
+export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, preWeight, symptoms, onNavigate, onReset }) {
   const baby = getBabyInfo(info.weeks);
   const diet = getDietGuide(info.weeks);
   const checkups = getCheckupsForWeek(info.weeks);
   const upcoming = getUpcomingCheckups(info.weeks).slice(0, 3);
   const lifestyle = getLifestyleGuide(info.trimester);
+  const handleSymptomNavigate = () => onNavigate('symptom');
 
   // 体重概览
   const latestWeight = weightRecords.length > 0 ? weightRecords[weightRecords.length - 1].weight : null;
@@ -240,6 +241,27 @@ export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, pre
           </div>
         </div>
       </section>
+
+      {/* 症状记录入口 */}
+      <button
+        type="button"
+        className="dash-section dash-symptom"
+        onClick={handleSymptomNavigate}
+      >
+        <h2 className="section-title">🩺 症状记录</h2>
+        <div className="symptom-quick">
+          {symptoms.length === 0 ? (
+            <div className="symptom-empty">点击记录孕期不适症状 📝</div>
+          ) : (
+            <>
+              <div className="symptom-quick-count">共 {symptoms.length} 天有记录</div>
+              <div className="symptom-quick-recent">
+                最近：{symptoms[symptoms.length - 1].date}
+              </div>
+            </>
+          )}
+        </div>
+      </button>
 
       {/* 免责声明 */}
       <footer className="dash-footer">

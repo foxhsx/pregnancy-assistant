@@ -540,6 +540,36 @@
 }
 
 /* 生活指南 */
+.dash-symptom {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.dash-symptom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.symptom-quick {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.symptom-quick-count {
+  font-size: 14px;
+  color: #666;
+}
+
+.symptom-empty {
+  color: #999;
+  font-size: 14px;
+}
+
 .life-cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
