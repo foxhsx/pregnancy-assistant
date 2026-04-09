@@ -768,6 +768,101 @@
 }
 
 /* 饮食详情页 */
+
+/* 每日三餐推荐 */
+.daily-meal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.daily-meal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.daily-meal-head h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.daily-refresh-btn {
+  border: none;
+  background: linear-gradient(135deg, #2c7a7b, #319795);
+  color: white;
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+
+.daily-refresh-btn:active {
+  transform: scale(0.95);
+}
+
+.daily-meal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.daily-meal-item {
+  display: flex;
+  gap: 12px;
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px;
+  border-left: 3px solid #2c7a7b;
+  overflow: hidden;
+}
+
+.daily-meal-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.daily-meal-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.daily-meal-type {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 4px;
+}
+
+.daily-meal-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+.daily-meal-info {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #718096;
+}
+
+.daily-meal-ingredients {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
 .diet-current {
   background: white;
   border-radius: 16px;
