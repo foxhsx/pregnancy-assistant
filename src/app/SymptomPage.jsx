@@ -242,7 +242,7 @@ export function SymptomPage({ info, symptoms, addSymptom, deleteSymptom, onBack 
 
         <div className="sp-week-nav">
           <button type="button" className="sp-nav-btn" onClick={() => setWeekStart(formatDate(addDays(weekStart, -7)))}>‹</button>
-          <div className="sp-week-days">
+          <div className="sp-week-scroll">
             {weekDates.map((date, index) => {
               const dateStr = formatDate(date);
               const severity = avgSeverity(dateStr);
@@ -251,19 +251,19 @@ export function SymptomPage({ info, symptoms, addSymptom, deleteSymptom, onBack 
               const isToday = dateStr === formatDate(today);
 
               return (
-                <button
+                <article
                   key={dateStr}
-                  type="button"
-                  className={`sp-day-btn${isActive ? ' active' : ''}${isToday ? ' today' : ''}`}
+                  className={`sp-day-card${isActive ? ' active' : ''}${isToday ? ' today' : ''}`}
                   onClick={() => openForm(dateStr)}
                 >
-                  <span className="sp-day-name">{WEEKDAY_LABELS[index]}</span>
-                  <span className="sp-day-date">{date.getMonth() + 1}/{date.getDate()}</span>
-                  <span className="sp-day-severity" style={{ background: severityColor(severity) }}>
-                    {severity > 0 ? severity.toFixed(1) : '无'}
-                  </span>
-                  <span className="sp-day-count">{entryCount > 0 ? `${entryCount} 条` : '可记录'}</span>
-                </button>
+                  <div className="weekday">{WEEKDAY_LABELS[index]}</div>
+                  <div className="date-num">{date.getDate()}</div>
+                  <span className="severity-dot" style={{ background: severityColor(severity) }} />
+                  <div className={`day-status${entryCount > 0 ? ' has-record' : ''}`}>
+                    {entryCount > 0 ? `${entryCount}条` : '—'}
+                  </div>
+                  <span className="day-indicator" style={{ background: severityColor(severity) }} />
+                </article>
               );
             })}
           </div>
@@ -338,118 +338,120 @@ export function SymptomPage({ info, symptoms, addSymptom, deleteSymptom, onBack 
               <button type="button" className="sp-close-btn" onClick={() => setShowForm(false)}>✕</button>
             </div>
 
-            <div className="sp-form-section">
-              <div className="sp-form-label">症状类型</div>
-              <div className="sp-tabs">
-                {SYMPTOM_CATEGORIES.map((category) => (
-                  <button
-                    key={category.key}
-                    type="button"
-                    className={`sp-tab${formState.category === category.key ? ' active' : ''}`}
-                    onClick={() => handleCategoryChange(category.key)}
-                  >
-                    {category.icon} {category.label}
-                  </button>
-                ))}
+            <div className="sp-modal-body">
+              <div className="sp-form-section">
+                <div className="sp-form-label">症状类型</div>
+                <div className="sp-tabs">
+                  {SYMPTOM_CATEGORIES.map((category) => (
+                    <button
+                      key={category.key}
+                      type="button"
+                      className={`sp-tab${formState.category === category.key ? ' active' : ''}`}
+                      onClick={() => handleCategoryChange(category.key)}
+                    >
+                      {category.icon} {category.label}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="sp-form-section">
-              <label htmlFor="symptom-select" className="sp-form-label">具体症状</label>
-              <select
-                id="symptom-select"
-                className="sp-select"
-                value={formState.symptom}
-                onChange={(event) => setFormState(prev => ({ ...prev, symptom: event.target.value }))}
-              >
-                {SYMPTOMS_BY_CATEGORY[formState.category]?.map((symptom) => (
-                  <option key={symptom} value={symptom}>{symptom}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="sp-form-section">
-              <label htmlFor="severity-range" className="sp-form-label">严重程度：{SEVERITY_LABELS[formState.severity]}</label>
-              <input
-                id="severity-range"
-                type="range"
-                min="1"
-                max="5"
-                step="1"
-                value={formState.severity}
-                onChange={(event) => setFormState(prev => ({ ...prev, severity: Number(event.target.value) }))}
-                className="sp-range"
-              />
-              <div className="sp-range-scale">
-                {SEVERITY_LABELS.slice(1).map((label) => (
-                  <span key={label}>{label}</span>
-                ))}
+              <div className="sp-form-section">
+                <label htmlFor="symptom-select" className="sp-form-label">具体症状</label>
+                <select
+                  id="symptom-select"
+                  className="sp-select"
+                  value={formState.symptom}
+                  onChange={(event) => setFormState(prev => ({ ...prev, symptom: event.target.value }))}
+                >
+                  {SYMPTOMS_BY_CATEGORY[formState.category]?.map((symptom) => (
+                    <option key={symptom} value={symptom}>{symptom}</option>
+                  ))}
+                </select>
               </div>
-            </div>
 
-            <div className="sp-form-section">
-              <div className="sp-form-label">持续时间</div>
-              <div className="sp-duration-row">
-                <label className="sp-radio">
-                  <input
-                    type="radio"
-                    name="durationType"
-                    checked={formState.durationType === 'persistent'}
-                    onChange={() => setFormState(prev => ({ ...prev, durationType: 'persistent' }))}
-                  />
-                  持续
-                </label>
-                <label className="sp-radio">
-                  <input
-                    type="radio"
-                    name="durationType"
-                    checked={formState.durationType === 'intermittent'}
-                    onChange={() => setFormState(prev => ({ ...prev, durationType: 'intermittent' }))}
-                  />
-                  间歇
-                </label>
+              <div className="sp-form-section">
+                <label htmlFor="severity-range" className="sp-form-label">严重程度：{SEVERITY_LABELS[formState.severity]}</label>
                 <input
-                  id="symptom-hours"
-                  type="number"
-                  min="0.5"
-                  step="0.5"
-                  value={formState.hours}
-                  onChange={(event) => setFormState(prev => ({ ...prev, hours: event.target.value }))}
-                  className="sp-hours-input"
+                  id="severity-range"
+                  type="range"
+                  min="1"
+                  max="5"
+                  step="1"
+                  value={formState.severity}
+                  onChange={(event) => setFormState(prev => ({ ...prev, severity: Number(event.target.value) }))}
+                  className="sp-range"
                 />
-                <label htmlFor="symptom-hours" className="sp-hours-unit">小时</label>
+                <div className="sp-range-scale">
+                  {SEVERITY_LABELS.slice(1).map((label) => (
+                    <span key={label}>{label}</span>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            <div className="sp-form-section">
-              <div className="sp-form-label">触发因素</div>
-              <div className="sp-trigger-options">
-                {TRIGGERS.map((trigger) => (
-                  <label key={trigger.key} className="sp-checkbox">
+              <div className="sp-form-section">
+                <div className="sp-form-label">持续时间</div>
+                <div className="sp-duration-row">
+                  <label className="sp-radio">
                     <input
-                      type="checkbox"
-                      checked={formState.triggers.includes(trigger.key)}
-                      onChange={() => handleTriggerToggle(trigger.key)}
+                      type="radio"
+                      name="durationType"
+                      checked={formState.durationType === 'persistent'}
+                      onChange={() => setFormState(prev => ({ ...prev, durationType: 'persistent' }))}
                     />
-                    {trigger.label}
+                    持续
                   </label>
-                ))}
+                  <label className="sp-radio">
+                    <input
+                      type="radio"
+                      name="durationType"
+                      checked={formState.durationType === 'intermittent'}
+                      onChange={() => setFormState(prev => ({ ...prev, durationType: 'intermittent' }))}
+                    />
+                    间歇
+                  </label>
+                  <input
+                    id="symptom-hours"
+                    type="number"
+                    min="0.5"
+                    step="0.5"
+                    value={formState.hours}
+                    onChange={(event) => setFormState(prev => ({ ...prev, hours: event.target.value }))}
+                    className="sp-hours-input"
+                  />
+                  <label htmlFor="symptom-hours" className="sp-hours-unit">小时</label>
+                </div>
               </div>
-            </div>
 
-            <div className="sp-form-section">
-              <label htmlFor="symptom-note" className="sp-form-label">备注</label>
-              <textarea
-                id="symptom-note"
-                className="sp-textarea"
-                rows="4"
-                placeholder="例如：早上空腹时更明显，喝温水后稍有缓解。"
-                value={formState.note}
-                onChange={(event) => setFormState(prev => ({ ...prev, note: event.target.value }))}
-              />
-            </div>
+              <div className="sp-form-section">
+                <div className="sp-form-label">触发因素</div>
+                <div className="sp-trigger-options">
+                  {TRIGGERS.map((trigger) => (
+                    <label key={trigger.key} className="sp-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={formState.triggers.includes(trigger.key)}
+                        onChange={() => handleTriggerToggle(trigger.key)}
+                      />
+                      {trigger.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
 
-            <button type="button" className="sp-save-btn" onClick={handleSave}>保存记录</button>
+              <div className="sp-form-section">
+                <label htmlFor="symptom-note" className="sp-form-label">备注</label>
+                <textarea
+                  id="symptom-note"
+                  className="sp-textarea"
+                  rows="4"
+                  placeholder="例如：早上空腹时更明显，喝温水后稍有缓解。"
+                  value={formState.note}
+                  onChange={(event) => setFormState(prev => ({ ...prev, note: event.target.value }))}
+                />
+              </div>
+
+              <button type="button" className="sp-save-btn" onClick={handleSave}>保存记录</button>
+            </div>
           </div>
         </div>
       )}

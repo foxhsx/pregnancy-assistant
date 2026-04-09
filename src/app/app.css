@@ -1038,11 +1038,11 @@
   color: #718096;
 }
 
+/* 周日历：横向滚动卡片（移动端默认） */
 .sp-week-nav {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 10px;
+  display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .sp-nav-btn {
@@ -1055,60 +1055,111 @@
   cursor: pointer;
   font-size: 22px;
   line-height: 1;
+  flex-shrink: 0;
 }
 
-.sp-week-days {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
+.sp-week-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
 }
 
-.sp-day-btn {
-  border: 1px solid #edf2f7;
+/* 隐藏滚动条，移动端更干净 */
+.sp-week-scroll::-webkit-scrollbar {
+  display: none;
+}
+.sp-week-scroll {
+  scrollbar-width: none;
+}
+
+.sp-day-card {
+  scroll-snap-align: start;
+  flex: 0 0 96px;
+  width: 96px;
   background: #f8fafc;
-  border-radius: 14px;
-  padding: 10px 6px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 10px 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  transition: all 0.15s ease;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
 }
 
-.sp-day-btn.active {
+/* 底部色条指示严重程度 */
+.day-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: #e2e8f0;
+}
+
+.sp-day-card.active {
   border-color: #2c7a7b;
-  background: #edfdfd;
+  background: #f0fdfd;
 }
 
-.sp-day-btn.today {
-  box-shadow: inset 0 0 0 1px #f6ad55;
+.sp-day-card.active .day-indicator {
+  background: #2c7a7b;
 }
 
-.sp-day-name {
-  font-size: 11px;
-  color: #718096;
+.sp-day-card.today {
+  border-color: #ed8936;
 }
 
-.sp-day-date {
-  font-size: 13px;
-  font-weight: 700;
+.sp-day-card.today .day-indicator {
+  background: #ed8936;
+}
+
+.day-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.weekday {
+  font-size: 10px;
+  color: #a0aec0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.date-num {
+  font-size: 22px;
+  font-weight: 800;
   color: #2d3748;
+  line-height: 1.2;
 }
 
-.sp-day-severity {
-  min-width: 38px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  color: white;
-  font-size: 11px;
+.severity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.day-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: #a0aec0;
+}
+
+.day-status.has-record {
+  color: #2c7a7b;
   font-weight: 700;
-  text-align: center;
-}
-
-.sp-day-count {
-  font-size: 11px;
-  color: #718096;
 }
 
 .sp-empty {
@@ -1204,12 +1255,14 @@
 
 .sp-modal-card {
   width: min(100%, 720px);
-  max-height: min(90vh, 760px);
-  overflow: auto;
+  max-height: min(85vh, 760px);
+  overflow: hidden;
   background: white;
   border-radius: 18px;
-  padding: 20px;
+  padding: 0;
   box-shadow: 0 12px 36px rgba(15, 23, 42, 0.18);
+  display: flex;
+  flex-direction: column;
 }
 
 .sp-modal-head {
@@ -1217,13 +1270,22 @@
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f0eae3;
+  flex-shrink: 0;
 }
 
 .sp-modal-head h3 {
   font-size: 18px;
   font-weight: 700;
   color: #2d3748;
+}
+
+.sp-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 20px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sp-form-section {
@@ -1341,13 +1403,47 @@
 
 /* 很窄的屏幕 (<360px)：生活指南改为单列 */
 @media (max-width: 480px) {
+  .sp-nav-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+  }
+
+  .sp-week-scroll {
+    gap: 4px;
+  }
+
+  /* 卡片内边距收窄 */
+  .sp-stage-card,
+  .sp-calendar-card,
+  .sp-records-card {
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  .sp-card-head {
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .sp-card-head h2 {
+    font-size: 15px;
+  }
+
+  .sp-stage-main {
+    font-size: 18px;
+  }
+
+  /* 记录列表 */
   .sp-record-item {
-    padding: 12px 10px;
+    padding: 10px;
+    border-radius: 12px;
   }
 
   .sp-record-top {
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
+    margin-bottom: 8px;
   }
 
   .sp-delete-btn {
@@ -1356,8 +1452,16 @@
     font-size: 11px;
   }
 
+  .sp-record-date {
+    font-size: 11px;
+  }
+
+  .sp-record-name {
+    font-size: 14px;
+  }
+
   .sp-meta-row {
-    gap: 6px;
+    gap: 4px;
   }
 
   .sp-pill,
@@ -1368,6 +1472,78 @@
 
   .sp-trigger-row {
     gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .sp-note {
+    font-size: 12px;
+  }
+
+  /* 弹窗全屏化 */
+  .sp-modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .sp-modal-card {
+    width: 100%;
+    max-height: 85vh;
+    border-radius: 18px 18px 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sp-modal-head {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f0eae3;
+  }
+
+  .sp-modal-head h3 {
+    font-size: 16px;
+  }
+
+  .sp-modal-body {
+    padding: 14px 16px 16px;
+  }
+
+  .sp-form-section {
+    margin-bottom: 14px;
+  }
+
+  .sp-form-label {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+
+  .sp-tabs {
+    gap: 6px;
+  }
+
+  .sp-tab {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .sp-duration-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .sp-hours-input {
+    width: 100%;
+  }
+
+  .sp-trigger-options {
+    gap: 8px 10px;
+  }
+
+  /* 趋势弹窗同样全屏 */
+  .sp-trend-modal {
+    width: 100%;
+  }
+
+  .sp-chart-wrap {
+    height: 240px;
   }
 }
 
@@ -1376,12 +1552,39 @@
     grid-template-columns: 1fr;
   }
 
-  .sp-week-nav {
-    grid-template-columns: 1fr;
+  .sp-week-scroll {
+    gap: 3px;
   }
 
-  .sp-week-days {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .sp-day-card {
+    flex: 0 0 80px;
+    width: 80px;
+    padding: 8px 4px;
+    gap: 3px;
+  }
+
+.weekday {
+  font-size: 10px;
+  color: #a0aec0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.date-num {
+    font-size: 18px;
+  }
+
+  .weekday {
+    font-size: 9px;
+  }
+
+  .severity-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .day-status {
+    font-size: 9px;
   }
 
   .sp-duration-row {
@@ -1411,6 +1614,27 @@
 @media (min-width: 600px) {
   .dashboard, .detail-page {
     max-width: 680px;
+  }
+
+  /* 平板+：日历恢复7列网格布局 */
+  .sp-week-nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .sp-week-scroll {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .sp-day-card {
+    flex: none;
+    width: auto;
   }
 
   .setup-card {
