@@ -113,25 +113,32 @@ export function applyRemoteData(remote) {
 
 /**
  * 创建房间（等待对方加入）
+ * @returns {Promise<void>} 在 peer open 成功后 resolve
  */
 export function createRoom(roomId, onReceive) {
   cleanup();
   onReceiveCallback = onReceive;
 
-  peer = new Peer(ROOM_PREFIX + roomId);
+  return new Promise((resolve, reject) => {
+    peer = new Peer(ROOM_PREFIX + roomId);
 
-  peer.on('open', () => {
-    // 就绪，等待连接
-  });
+    peer.on('open', () => {
+      resolve();
+    });
 
-  peer.on('connection', (connection) => {
-    conn = connection;
-    setupConnection(conn);
-  });
+    peer.on('connection', (connection) => {
+      conn = connection;
+      setupConnection(conn);
+    });
 
-  peer.on('error', (err) => {
-    console.error('Peer create error:', err);
-    if (onReceiveCallback) onReceiveCallback({ type: 'error', message: err.type || err.message });
+    peer.on('error', (err) => {
+      console.error('Peer create error:', err);
+      if (err.type === 'unavailable-id') {
+        reject(new Error('该房间号已被占用，请重新创建'));
+      } else {
+        reject(err);
+      }
+    });
   });
 }
 
@@ -151,7 +158,11 @@ export function joinRoom(roomId, onReceive) {
 
   peer.on('error', (err) => {
     console.error('Peer join error:', err);
-    if (onReceiveCallback) onReceiveCallback({ type: 'error', message: err.type || err.message });
+    if (err.type === 'peer-unavailable') {
+      if (onReceiveCallback) onReceiveCallback({ type: 'error', message: '房间不存在或对方还未就绪，请确认房间号且对方保持在同步页面' });
+    } else {
+      if (onReceiveCallback) onReceiveCallback({ type: 'error', message: err.type || err.message });
+    }
   });
 }
 

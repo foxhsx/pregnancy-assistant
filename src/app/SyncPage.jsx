@@ -60,14 +60,21 @@ export function SyncPage({ onBack, reloadData }) {
     return () => cleanup();
   }, []);
 
-  const handleCreate = () => {
+  const handleCreate = async () => {
     const id = generateRoomId();
     setRoomId(id);
     setMode('create');
-    setStatus('waiting');
+    setStatus('connecting');
     setSyncLog([]);
-    addLog(`创建房间 ${id}，等待对方加入...`);
-    createRoom(id, handleReceive);
+    addLog(`正在创建房间 ${id}...`);
+    try {
+      await createRoom(id, handleReceive);
+      setStatus('waiting');
+      addLog(`房间 ${id} 已就绪，等待对方加入`);
+    } catch (err) {
+      setStatus('error');
+      addLog(`❌ 创建失败：${err.message}`);
+    }
   };
 
   const handleJoin = () => {
