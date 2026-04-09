@@ -8,12 +8,13 @@ import { DietPage } from './DietPage.jsx';
 import { LifestylePage } from './LifestylePage.jsx';
 import { DadPage } from './DadPage.jsx';
 import { SymptomPage } from './SymptomPage.jsx';
+import { SyncPage } from './SyncPage.jsx';
 
 /**
  * 应用根组件
  */
 export function App() {
-  const { ready, lmpDate, info, isSetup, setLmpDate, setDueDate, checkupDone, toggleCheckup, weightRecords, addWeight, deleteWeight, preWeight, setPreWeight, resetData, symptoms, addSymptom, deleteSymptom } = usePregnancy();
+  const { ready, lmpDate, info, isSetup, setLmpDate, setDueDate, checkupDone, toggleCheckup, weightRecords, addWeight, deleteWeight, preWeight, setPreWeight, resetData, symptoms, addSymptom, deleteSymptom, reloadData } = usePregnancy();
   const [page, setPage] = useState('home');
 
   if (!ready) return null;
@@ -60,6 +61,8 @@ export function App() {
       return <DadPage info={info} onBack={() => setPage('home')} />;
     case 'symptom':
       return <SymptomPage info={info} symptoms={symptoms} addSymptom={addSymptom} deleteSymptom={deleteSymptom} onBack={() => setPage('home')} />;
+    case 'sync':
+      return <SyncPage onBack={() => setPage('home')} reloadData={reloadData} />;
     default:
       return <Dashboard info={info} checkupDone={checkupDone} toggleCheckup={toggleCheckup} weightRecords={weightRecords} preWeight={preWeight} symptoms={symptoms} onNavigate={handleNavigate} onReset={handleReset} />;
   }

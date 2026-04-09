@@ -38,9 +38,14 @@ export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, pre
           <span className="dash-logo">🤰</span>
           <span className="dash-title">孕期助手</span>
         </div>
-        <button type="button" className="dash-reset-btn" onClick={onReset} title="重置日期">
-          ⚙️
-        </button>
+        <div className="dash-header-right">
+          <button type="button" className="dash-sync-btn" onClick={() => onNavigate('sync')} title="数据同步">
+            🔗
+          </button>
+          <button type="button" className="dash-reset-btn" onClick={onReset} title="重置日期">
+            ⚙️
+          </button>
+        </div>
       </header>
 
       {/* 孕周大卡片 */}

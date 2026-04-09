@@ -201,6 +201,15 @@ export function usePregnancy() {
     else localStorage.removeItem(PRE_WEIGHT_KEY);
   }, []);
 
+  const reloadData = useCallback(() => {
+    const saved = loadUserData();
+    setLmpDateState(saved?.lmpDate ?? null);
+    setCheckupDone(loadCheckupRecords());
+    setWeightRecords(loadWeightRecords());
+    setSymptoms(loadSymptoms());
+    setPreWeightState(loadPreWeight());
+  }, []);
+
   const resetData = useCallback(() => {
     setLmpDateState(null);
     setCheckupDone({});
@@ -235,5 +244,6 @@ export function usePregnancy() {
     addSymptom,
     deleteSymptom,
     updateSymptomEntry,
+    reloadData,
   };
 }
