@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { calcPregnancyInfo, lmpFromDueDate, formatDate } from './utils.js';
 
 const STORAGE_KEY = 'yunqi_user_data';
+const SYMPTOM_KEY = 'yunqi_symptoms';
 const WEIGHT_KEY = 'yunqi_weight_records';
 const CHECKUP_KEY = 'yunqi_checkup_done';
 const PRE_WEIGHT_KEY = 'yunqi_pre_weight';
@@ -71,6 +72,19 @@ function saveCheckupRecords(records) {
   localStorage.setItem(CHECKUP_KEY, JSON.stringify(records));
 }
 
+function loadSymptoms() {
+  try {
+    const raw = localStorage.getItem(SYMPTOM_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveSymptoms(records) {
+  localStorage.setItem(SYMPTOM_KEY, JSON.stringify(records));
+}
+
 /**
  * 主 Hook：管理用户的孕期数据
  */
@@ -79,6 +93,7 @@ export function usePregnancy() {
   const [checkupDone, setCheckupDone] = useState({});
   const [weightRecords, setWeightRecords] = useState([]);
   const [preWeight, setPreWeightState] = useState(null);
+  const [symptoms, setSymptoms] = useState([]);
   const [ready, setReady] = useState(false);
 
   // 初始化：从 localStorage 读取
@@ -89,6 +104,7 @@ export function usePregnancy() {
     }
     setCheckupDone(loadCheckupRecords());
     setWeightRecords(loadWeightRecords());
+    setSymptoms(loadSymptoms());
     setPreWeightState(loadPreWeight());
     setReady(true);
   }, []);
@@ -134,6 +150,50 @@ export function usePregnancy() {
     });
   }, []);
 
+  const addSymptom = useCallback((record) => {
+    setSymptoms(prev => {
+      const existing = prev.findIndex(r => r.date === record.date);
+      let next;
+      if (existing >= 0) {
+        // 更新当天的记录，追加 entries
+        next = prev.map((r, i) => i === existing ? { ...r, entries: [...r.entries, record.entries[0]] } : r);
+      } else {
+        next = [...prev, record].sort((a, b) => a.date.localeCompare(b.date));
+      }
+      saveSymptoms(next);
+      return next;
+    });
+  }, []);
+
+  const deleteSymptom = useCallback((date, entryId) => {
+    setSymptoms(prev => {
+      let next = prev.map(r => {
+        if (r.date === date) {
+          return { ...r, entries: r.entries.filter(e => e.id !== entryId) };
+        }
+        return r;
+      }).filter(r => r.entries.length > 0);
+      saveSymptoms(next);
+      return next;
+    });
+  }, []);
+
+  const updateSymptomEntry = useCallback((date, entryId, updates) => {
+    setSymptoms(prev => {
+      const next = prev.map(r => {
+        if (r.date === date) {
+          return {
+            ...r,
+            entries: r.entries.map(e => e.id === entryId ? { ...e, ...updates } : e),
+          };
+        }
+        return r;
+      });
+      saveSymptoms(next);
+      return next;
+    });
+  }, []);
+
   const setPreWeight = useCallback((w) => {
     const val = w ? parseFloat(w) : null;
     setPreWeightState(val);
@@ -150,6 +210,7 @@ export function usePregnancy() {
     localStorage.removeItem(CHECKUP_KEY);
     localStorage.removeItem(WEIGHT_KEY);
     localStorage.removeItem(PRE_WEIGHT_KEY);
+    localStorage.removeItem(SYMPTOM_KEY);
   }, []);
 
   // 计算当前孕周信息
@@ -170,5 +231,9 @@ export function usePregnancy() {
     preWeight,
     setPreWeight,
     resetData,
+    symptoms,
+    addSymptom,
+    deleteSymptom,
+    updateSymptomEntry,
   };
 }
