@@ -2,13 +2,17 @@ import { getBabyInfo } from './baby-data.js';
 import { getCheckupsForWeek, getUpcomingCheckups } from './checkup-data.js';
 import { getDietGuide } from './diet-data.js';
 import { getLifestyleGuide } from './lifestyle-data.js';
+import { formatReminderTime } from './reminder-utils.js';
 import { formatDateCN } from './utils.js';
 import { getWeightAdvice } from './weight-advice.js';
 
 /**
  * Dashboard 主页面
  */
-export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, preWeight, symptoms, onNavigate, onReset }) {
+export function Dashboard({
+  info, checkupDone, toggleCheckup, weightRecords, preWeight, symptoms, onNavigate, onReset,
+  todayReminders, missedReminders, hasPermission, requestPermission, dismissMissed, onNavigateToReminder,
+}) {
   const baby = getBabyInfo(info.weeks);
   const diet = getDietGuide(info.weeks);
   const checkups = getCheckupsForWeek(info.weeks);
@@ -245,6 +249,54 @@ export function Dashboard({ info, checkupDone, toggleCheckup, weightRecords, pre
             </ul>
           </div>
         </div>
+      </section>
+
+      {/* 提醒中心 */}
+      <section className="dash-section dash-reminder">
+        <h2 className="section-title">⏰ 提醒中心</h2>
+
+        {/* 错过的提醒 */}
+        {missedReminders && missedReminders.length > 0 && (
+          <div className="reminder-missed">
+            <div className="missed-header">
+              🔔 你有 {missedReminders.length} 条错过的提醒
+            </div>
+            {missedReminders.slice(0, 3).map(r => (
+              <div key={r.id} className="missed-item">
+                <span className="missed-title">{r.title}</span>
+                <span className="missed-time">{formatReminderTime(r.datetime)}</span>
+                <button type="button" onClick={() => dismissMissed(r.id)}>忽略</button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 今日提醒 */}
+        {todayReminders && todayReminders.length > 0 ? (
+          <div className="reminder-today">
+            <div className="today-count">今日 {todayReminders.length} 项提醒</div>
+            {todayReminders.slice(0, 3).map(r => (
+              <div key={r.id} className="reminder-item">
+                <span className="reminder-time">{r.datetime?.slice(11, 16) || '--:--'}</span>
+                <span className="reminder-title">{r.title}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="reminder-empty">今日暂无提醒</div>
+        )}
+
+        {/* 通知权限提示 */}
+        {!hasPermission && (
+          <div className="reminder-permission-tip">
+            <p>💡 开启通知权限，在应用后台时也能收到提醒</p>
+            <button type="button" className="permission-btn" onClick={requestPermission}>开启通知</button>
+          </div>
+        )}
+
+        <button type="button" className="reminder-manage-btn" onClick={onNavigateToReminder}>
+          管理提醒 →
+        </button>
       </section>
 
       {/* 症状记录入口 */}
