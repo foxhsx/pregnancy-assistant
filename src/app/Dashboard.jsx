@@ -73,6 +73,7 @@ export function Dashboard({
           { key: 'diet', label: '饮食', icon: '🍽' },
           { key: 'life', label: '生活', icon: '📋' },
           { key: 'dad', label: '准爸爸', icon: '👨' },
+          { key: 'reminder', label: '提醒', icon: '⏰' },
         ].map(tab => (
           <button
             key={tab.key}
