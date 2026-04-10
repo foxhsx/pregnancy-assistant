@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { loadReminders, saveReminders, loadSettings, saveSettings } from './reminder-data.js';
-import { NotificationService } from './notification-service.js';
+import { NotificationService, SpeechService } from './notification-service.js';
 import {
   checkMissedReminders,
   getTodayReminders,
@@ -33,6 +33,19 @@ function showInAppAlert(reminder) {
 }
 
 /**
+ * 语音播报提醒
+ */
+function speakReminder(reminder, speechSettings) {
+  if (!speechSettings?.enabled) return;
+  
+  const text = reminder.description 
+    ? `${reminder.title}。${reminder.description}`
+    : reminder.title;
+  
+  SpeechService.speak(text, { rate: speechSettings.rate || 1.0 });
+}
+
+/**
  * 提醒系统核心 Hook
  * @param {Object|null} info 孕周信息
  */
@@ -46,6 +59,12 @@ export function useReminders(info) {
   const checkIntervalRef = useRef(null);
   const lastCheckDateRef = useRef('');
   const hasPermissionRef = useRef(false);
+  const settingsRef = useRef(null);
+
+  // 同步 settings 到 ref
+  useEffect(() => {
+    settingsRef.current = settings;
+  }, [settings]);
 
   // 检查并触发提醒
   const checkAndTriggerReminders = useCallback(() => {
@@ -59,6 +78,9 @@ export function useReminders(info) {
 
           // 应用内提醒
           showInAppAlert(r);
+
+          // 语音播报
+          speakReminder(r, settingsRef.current?.speech);
 
           // 浏览器通知
           if (hasPermissionRef.current) {

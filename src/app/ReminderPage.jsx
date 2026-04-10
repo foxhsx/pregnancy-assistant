@@ -136,6 +136,18 @@ export function ReminderPage({
           />
         </div>
 
+        <div className="setting-item">
+          <span>语音播报</span>
+          <input
+            type="checkbox"
+            checked={settings?.speech?.enabled ?? true}
+            onChange={e => onUpdateSettings('speech', { 
+              ...(settings?.speech || { rate: 1.0 }),
+              enabled: e.target.checked 
+            })}
+          />
+        </div>
+
         <div className="platform-notice">
           <h4>📱 提醒功能说明</h4>
           <ul>

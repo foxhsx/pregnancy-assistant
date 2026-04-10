@@ -9,7 +9,8 @@ const defaultSettings = {
     weight: { enabled: true, times: ['21:00'], days: [1, 2, 3, 4, 5, 6, 0] },
     symptom: { enabled: false, times: [], days: [] }
   },
-  milestone: { trimesterChange: true, dueDateApproaching: true }
+  milestone: { trimesterChange: true, dueDateApproaching: true },
+  speech: { enabled: true, rate: 1.0 }
 };
 
 /**
