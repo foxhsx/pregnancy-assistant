@@ -79,6 +79,7 @@ export function generateAutoReminders(info, settings, existingReminders) {
   if (settings.checkup?.enabled) {
     checkupSchedule.forEach(checkup => {
       const enterWeekId = `checkup-enter-${checkup.name}`;
+      const deadlineId = `checkup-deadline-${checkup.name}`;
 
       // 进入产检周提醒
       if (settings.checkup.enterWeekNotify && !existingIds.has(enterWeekId)) {
@@ -88,6 +89,40 @@ export function generateAutoReminders(info, settings, existingReminders) {
             type: 'checkup',
             title: `本周需做：${checkup.name}`,
             description: checkup.desc,
+            datetime: now.toISOString(),
+            checkupName: checkup.name,
+            weekRange: { start: checkup.week, end: checkup.weekEnd },
+            enabled: true,
+            createdAt: now.toISOString(),
+            lastTriggered: null
+          });
+        }
+      }
+
+      // 产检窗口期结束前提醒
+      if (settings.checkup.deadlineNotify && !existingIds.has(deadlineId) && info.lmpDate) {
+        const advanceDays = settings.checkup.advanceDays || 3;
+        // 计算产检窗口期结束日期（产检结束周的最后一天）
+        const deadlineDate = new Date(info.lmpDate);
+        deadlineDate.setDate(deadlineDate.getDate() + (checkup.weekEnd + 1) * 7 - 1); // weekEnd周的最后一天
+        // 计算提醒日期
+        const remindDate = new Date(deadlineDate);
+        remindDate.setDate(remindDate.getDate() - advanceDays);
+        
+        // 检查今天是否是提醒日期（允许±1天的容差）
+        const todayStart = new Date(now);
+        todayStart.setHours(0, 0, 0, 0);
+        const remindDateStart = new Date(remindDate);
+        remindDateStart.setHours(0, 0, 0, 0);
+        
+        const daysDiff = Math.round((remindDateStart.getTime() - todayStart.getTime()) / (1000 * 60 * 60 * 24));
+        
+        if (daysDiff >= 0 && daysDiff <= 1 && info.weeks >= checkup.week && info.weeks <= checkup.weekEnd) {
+          newReminders.push({
+            id: deadlineId,
+            type: 'checkup',
+            title: `⚠️ ${checkup.name}窗口期即将结束`,
+            description: `${checkup.name}的最佳检查时间为${checkup.week}-${checkup.weekEnd}周，请尽快完成检查`,
             datetime: now.toISOString(),
             checkupName: checkup.name,
             weekRange: { start: checkup.week, end: checkup.weekEnd },
