@@ -2822,3 +2822,535 @@
     break-inside: avoid;
   }
 }
+
+/* ========================================
+   提醒系统样式
+   ======================================== */
+
+/* Dashboard 提醒卡片 */
+.dash-reminder {
+  background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);
+}
+
+.dash-reminder .section-title {
+  color: #d97706;
+}
+
+/* 错过的提醒 */
+.reminder-missed {
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.missed-header {
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 8px;
+}
+
+.missed-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #fcd34d;
+}
+
+.missed-item:last-child {
+  border-bottom: none;
+}
+
+.missed-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+.missed-time {
+  font-size: 12px;
+  color: #92400e;
+}
+
+.missed-item button {
+  padding: 4px 8px;
+  font-size: 12px;
+  background: #fff;
+  border: 1px solid #f59e0b;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 今日提醒 */
+.reminder-today {
+  margin-bottom: 12px;
+}
+
+.today-count {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.reminder-item:last-child {
+  border-bottom: none;
+}
+
+.reminder-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d97706;
+  min-width: 50px;
+}
+
+.reminder-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+.reminder-empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 20px 0;
+  font-size: 14px;
+}
+
+/* 通知权限提示 */
+.reminder-permission-tip {
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.reminder-permission-tip p {
+  font-size: 13px;
+  color: #1e40af;
+  margin-bottom: 8px;
+}
+
+.permission-btn {
+  padding: 6px 16px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.permission-btn:hover {
+  background: #2563eb;
+}
+
+/* 管理提醒按钮 */
+.reminder-manage-btn {
+  width: 100%;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #d97706;
+  cursor: pointer;
+  text-align: center;
+}
+
+.reminder-manage-btn:hover {
+  background: #fef3c7;
+}
+
+/* ========================================
+   提醒管理页面
+   ======================================== */
+
+.reminder-page {
+  background: #f9fafb;
+}
+
+/* 权限横幅 */
+.permission-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border-bottom: 1px solid #bfdbfe;
+}
+
+.permission-banner span {
+  font-size: 14px;
+  color: #1e40af;
+}
+
+.permission-banner button {
+  padding: 6px 12px;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Tab 切换 */
+.reminder-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  color: #6b7280;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  background: #d97706;
+  color: #fff;
+}
+
+/* 提醒列表 */
+.reminder-list {
+  padding: 16px;
+}
+
+.list-empty {
+  text-align: center;
+  color: #9ca3af;
+  padding: 40px 0;
+  font-size: 14px;
+}
+
+.reminder-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.reminder-card.disabled {
+  opacity: 0.5;
+}
+
+.reminder-card-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.reminder-card-left {
+  flex: 1;
+}
+
+.reminder-card-time {
+  display: block;
+  font-size: 12px;
+  color: #d97706;
+  margin-bottom: 4px;
+}
+
+.reminder-card-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.reminder-card-desc {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.reminder-card-right {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-btn,
+.delete-btn {
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* 设置区域 */
+.reminder-settings {
+  padding: 16px;
+  background: #fff;
+  margin-top: 16px;
+}
+
+.reminder-settings h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.setting-item span {
+  font-size: 14px;
+}
+
+.setting-item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* 平台说明 */
+.platform-notice {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.platform-notice h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.platform-notice ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px 0;
+}
+
+.platform-notice li {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.notice-tip {
+  font-size: 12px;
+  color: #92400e;
+  margin: 0;
+}
+
+/* FAB 按钮 */
+.fab-add {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.4);
+  z-index: 100;
+}
+
+.fab-add:hover {
+  background: #b45309;
+}
+
+/* ========================================
+   模态框样式
+   ======================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #d97706;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-cancel,
+.btn-confirm {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+}
+
+.btn-confirm {
+  background: #d97706;
+  border: none;
+  color: #fff;
+}
+
+.btn-confirm:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+}
+
+.btn-confirm:not(:disabled):hover {
+  background: #b45309;
+}
+
+/* ========================================
+   应用内提醒弹窗
+   ======================================== */
+
+.in-app-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+}
+
+.in-app-alert {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  animation: alert-pop 0.3s ease-out;
+}
+
+@keyframes alert-pop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.alert-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.alert-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.alert-desc {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.alert-btn-dismiss {
+  width: 100%;
+  padding: 12px;
+  background: #d97706;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.alert-btn-dismiss:hover {
+  background: #b45309;
+}
